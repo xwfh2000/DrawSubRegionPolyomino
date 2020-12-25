@@ -27,7 +27,7 @@ namespace DrawSubRegionPolyomino
             double gridsize = Convert.ToDouble(TBGridSize.Text);
             double roundratio = Convert.ToDouble(TBRoundRatio.Text);
             float penWidth = Convert.ToSingle(TBPenwidth.Text);
-            Color penColor = Color.Black;
+            Color penColor = colorDialog1.Color;
             List<Point> pts = new List<Point>();
             Piece[,] pieces = new Piece[10, 10];
             for (int i = 0; i < pieces.GetLength(0); i++)
@@ -285,6 +285,12 @@ namespace DrawSubRegionPolyomino
 
         private void Set_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void BTNChangeColor_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
 
         }
     }

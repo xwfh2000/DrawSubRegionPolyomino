@@ -138,6 +138,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.BTNChangeColor = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -1175,6 +1177,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.BTNChangeColor);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.Empty);
             this.panel2.Controls.Add(this.label3);
@@ -1245,6 +1248,17 @@
             this.label4.Size = new System.Drawing.Size(66, 19);
             this.label4.TabIndex = 8;
             this.label4.Text = "线宽：";
+            // 
+            // BTNChangeColor
+            // 
+            this.BTNChangeColor.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BTNChangeColor.Location = new System.Drawing.Point(17, 70);
+            this.BTNChangeColor.Name = "BTNChangeColor";
+            this.BTNChangeColor.Size = new System.Drawing.Size(97, 32);
+            this.BTNChangeColor.TabIndex = 112;
+            this.BTNChangeColor.Text = "更改颜色";
+            this.BTNChangeColor.UseVisualStyleBackColor = true;
+            this.BTNChangeColor.Click += new System.EventHandler(this.BTNChangeColor_Click);
             // 
             // Form1
             // 
@@ -1376,6 +1390,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TBPenwidth;
         private System.Windows.Forms.TextBox TBRoundRatio;
+        private System.Windows.Forms.Button BTNChangeColor;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 
