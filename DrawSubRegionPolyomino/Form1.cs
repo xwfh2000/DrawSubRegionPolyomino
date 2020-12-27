@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace DrawSubRegionPolyomino
 {
@@ -28,6 +29,7 @@ namespace DrawSubRegionPolyomino
             double roundratio = Convert.ToDouble(TBRoundRatio.Text);
             float penWidth = Convert.ToSingle(TBPenwidth.Text);
             Color penColor = colorDialog1.Color;
+            Color brushColor = colorDialog2.Color;
             List<Point> pts = new List<Point>();
             Piece[,] pieces = new Piece[10, 10];
             for (int i = 0; i < pieces.GetLength(0); i++)
@@ -46,65 +48,14 @@ namespace DrawSubRegionPolyomino
                 }
             }
 
-            DrawPoly(new Pen(penColor, penWidth), gp, gridsize, pieces, roundratio);
+            DrawPoly(new Pen(penColor, penWidth), new SolidBrush(brushColor), gp, gridsize, pieces, roundratio);
             gp.Dispose();
         }
 
         struct Piece
         {
             public string groupNUm;
-        }
-        /// <summary>
-        /// 画十种轮廓线（四个拐角+六种线段）
-        /// </summary>
-        /// <param name="pen"></param>
-        /// <param name="gp"></param>
-        /// <param name="gridsize"></param>
-        /// <param name="X"></param>
-        /// <param name="Y"></param>
-        /// <param name="radius"></param>
-        #region 
-        private void DrawLeftLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawLine(pen, X, Y, X + radius, Y);
-        }
-        private void DrawMidLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawLine(pen, X + radius, Y, X + (int)gridsize - radius, Y);
-        }
-        private void DrawRightLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawLine(pen, X + (int)gridsize - radius, Y, X + (int)gridsize, Y);
-        }
-        private void DrawUpLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawLine(pen, X, Y, X, Y + radius);
-        }
-        private void DrawLmidLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawLine(pen, X, Y + radius, X, Y + (int)gridsize - radius);
-        }
-        private void DrawDownLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawLine(pen, X, Y + (int)gridsize - radius, X, Y + (int)gridsize);
-        }
-        private void DrawULCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawArc(pen, X, Y, 2 * radius, 2 * radius, 180, 90);
-        }
-        private void DrawURCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawArc(pen, X + (int)gridsize - 2 * radius, Y, 2 * radius, 2 * radius, 270, 90);
-        }
-        private void DrawDLCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawArc(pen, X, Y + (int)gridsize - 2 * radius, 2 * radius, 2 * radius, 90, 90);
-        }
-        private void DrawDRCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
-        {
-            gp.DrawArc(pen, X + (int)gridsize - 2 * radius, Y + (int)gridsize - 2 * radius, 2 * radius, 2 * radius, 0, 90);
-        }
-        #endregion        
+        }        
 
         /// <summary>
         /// 取临近的组
@@ -149,6 +100,122 @@ namespace DrawSubRegionPolyomino
         #endregion
 
         /// <summary>
+        /// 判断是否填充四个角及中心。
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="Pieces"></param>
+        /// <returns></returns>
+        #region
+        private bool JudgeULCorner(int x, int y, Piece[,] Pieces)
+        {
+            string l = GetLeftGorup(x, y, Pieces);
+            string u = GetUpGorup(x, y, Pieces);
+            string me = Pieces[x, y].groupNUm;
+            return me != "" && (l == me || u == me);
+        }
+        private bool JudgeURCorner(int x, int y, Piece[,] Pieces)
+        {
+            string R = GetRightGorup(x, y, Pieces);
+            string u = GetUpGorup(x, y, Pieces);
+            string me = Pieces[x, y].groupNUm;
+            return me != "" && (R == me || u == me);
+        }
+        private bool JudgeDLCorner(int x, int y, Piece[,] Pieces)
+        {
+            string l = GetLeftGorup(x, y, Pieces);
+            string d = GetDownGorup(x, y, Pieces);
+            string me = Pieces[x, y].groupNUm;
+            return me != "" && (l == me || d == me);
+        }
+        private bool JudgeDRCorner(int x, int y, Piece[,] Pieces)
+        {
+            string r = GetRightGorup(x, y, Pieces);
+            string d = GetDownGorup(x, y, Pieces);
+            string me = Pieces[x, y].groupNUm;
+            return me != "" && (r == me || d == me);
+        }
+        private bool JudgeCenter(int x, int y, Piece[,] Pieces)
+        {
+            string me = Pieces[x, y].groupNUm;
+            return me != "";
+        }
+        #endregion
+
+        /// <summary>
+        /// 填充四个角及中心
+        /// </summary>
+        /// <param name="brush"></param>
+        /// <param name="g"></param>
+        /// <param name="gridsize"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="radius"></param>
+        #region
+        private void FillULCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            gp.AddLine(X + radius, Y, X, Y);
+            gp.AddLine(X, Y, X, Y - radius);
+            gp.AddArc(X, Y, 2 * radius, 2 * radius, 180, 90);
+            Region r = new Region(gp);
+            g.FillRegion(brush, r);
+            gp.Dispose();
+            r.Dispose();
+        }
+        private void FillURCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            gp.AddArc(X + (Single)gridsize - 2 * radius, Y, 2 * radius, 2 * radius, 270, 90);
+            gp.AddLine(X + (Single)gridsize, Y + radius, X + (Single)gridsize, Y);
+            gp.AddLine(X + (Single)gridsize, Y, X + (Single)gridsize - radius, Y);
+            Region r = new Region(gp);
+            g.FillRegion(brush, r);
+            gp.Dispose();
+            r.Dispose();
+        }
+        private void FillDLCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            gp.AddArc(X, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 90, 90);
+            gp.AddLine(X, Y + (Single)gridsize - radius, X, Y + (Single)gridsize);
+            gp.AddLine(X, Y + (Single)gridsize, X + radius, Y + (Single)gridsize);
+            Region r = new Region(gp);
+            g.FillRegion(brush, r);
+            gp.Dispose();
+            r.Dispose();
+        }
+        private void FillDRCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            gp.AddArc(X + (Single)gridsize - 2 * radius, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 0, 90);
+            gp.AddLine(X + (Single)gridsize - radius, Y + (Single)gridsize, X + (Single)gridsize, Y + (Single)gridsize);
+            gp.AddLine(X + (Single)gridsize, Y + (Single)gridsize, X + (Single)gridsize, Y + (Single)gridsize - radius);
+            Region r = new Region(gp);
+            g.FillRegion(brush, r);
+            gp.Dispose();
+            r.Dispose();
+        }
+        private void FillCenter(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            gp.AddArc(X + (Single)gridsize - 2 * radius, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 0, 90);
+            gp.AddLine(X + (Single)gridsize - radius, Y + (Single)gridsize, X + radius, Y + (Single)gridsize);
+            gp.AddArc(X, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 90, 90);
+            gp.AddLine(X, Y + (Single)gridsize - radius, X, Y - (Single)gridsize);
+            gp.AddArc(X, Y, 2 * radius, 2 * radius, 180, 90);
+            gp.AddLine(X + (Single)gridsize, Y, X + (Single)gridsize - radius, Y);
+            gp.AddArc(X + (Single)gridsize - 2 * radius, Y, 2 * radius, 2 * radius, 270, 90);
+            gp.CloseFigure();
+            Region r = new Region(gp);
+            g.FillRegion(brush, r);
+            gp.Dispose();
+            r.Dispose();
+        }
+
+        #endregion
+
+        /// <summary>
         /// 判断是否画轮廓
         /// </summary>
         /// <param name="x"></param>
@@ -158,25 +225,25 @@ namespace DrawSubRegionPolyomino
         #region
         private bool JudgeULCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetLeftGorup(x, y, Pieces) != Pieces[x, y].groupNUm && 
+            return GetLeftGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
                 GetUpGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                Pieces[x,y].groupNUm!="";
+                Pieces[x, y].groupNUm != "";
         }
         private bool JudgeURCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetRightGorup(x, y, Pieces) != Pieces[x, y].groupNUm && 
+            return GetRightGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
                 GetUpGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
                 Pieces[x, y].groupNUm != "";
         }
         private bool JudgeDLCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetLeftGorup(x, y, Pieces) != Pieces[x, y].groupNUm && 
+            return GetLeftGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
                 GetDownGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
                 Pieces[x, y].groupNUm != "";
         }
         private bool JudgeDRCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetDownGorup(x, y, Pieces) != Pieces[x, y].groupNUm && 
+            return GetDownGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
                 GetRightGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
                 Pieces[x, y].groupNUm != "";
         }
@@ -195,7 +262,7 @@ namespace DrawSubRegionPolyomino
         {
             string u = GetUpGorup(x, y, Pieces);
             string me = Pieces[x, y].groupNUm;
-            return (u == ""&&me!="")||(me==""&&u!="");
+            return (u == "" && me != "") || (me == "" && u != "");
         }
         private bool JudgeRightLine(int x, int y, Piece[,] Pieces)
         {
@@ -234,7 +301,59 @@ namespace DrawSubRegionPolyomino
         }
         #endregion
 
-        private void DrawPoly(Pen pen, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
+        /// <summary>
+        /// 画十种轮廓线（四个拐角+六种线段）
+        /// </summary>
+        /// <param name="pen"></param>
+        /// <param name="gp"></param>
+        /// <param name="gridsize"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="radius"></param>
+        #region 
+        private void DrawLeftLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawLine(pen, X, Y, X + radius, Y);
+        }
+        private void DrawMidLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawLine(pen, X + radius, Y, X + (Single)gridsize - radius, Y);
+        }
+        private void DrawRightLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawLine(pen, X + (Single)gridsize - radius, Y, X + (Single)gridsize, Y);
+        }
+        private void DrawUpLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawLine(pen, X, Y, X, Y + radius);
+        }
+        private void DrawLmidLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawLine(pen, X, Y + radius, X, Y + (Single)gridsize - radius);
+        }
+        private void DrawDownLine(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawLine(pen, X, Y + (Single)gridsize - radius, X, Y + (Single)gridsize);
+        }
+        private void DrawULCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawArc(pen, X, Y, 2 * radius, 2 * radius, 180, 90);
+        }
+        private void DrawURCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawArc(pen, X + (Single)gridsize - 2 * radius, Y, 2 * radius, 2 * radius, 270, 90);
+        }
+        private void DrawDLCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawArc(pen, X, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 90, 90);
+        }
+        private void DrawDRCircle(Pen pen, Graphics gp, double gridsize, int X, int Y, int radius)
+        {
+            gp.DrawArc(pen, X + (Single)gridsize - 2 * radius, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 0, 90);
+        }
+        #endregion             
+       
+        private void DrawPoly(Pen pen, Brush brush, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
         {
             for (int x = 0; x < Pieces.GetLength(0); x++)
                 for (int y = 0; y < Pieces.GetLength(1); y++)
@@ -242,6 +361,18 @@ namespace DrawSubRegionPolyomino
                     int X = (int)(x * gridsize);
                     int Y = (int)(y * gridsize);
                     int radius = (int)(gridsize / 2 * roundRatio);
+                    //用刷子填充区域
+                    if (JudgeULCorner(x, y, Pieces))
+                        FillULCorner(brush, gp, gridsize, X, Y, radius);
+                    if (JudgeURCorner(x, y, Pieces))
+                        FillURCorner(brush, gp, gridsize, X, Y, radius);
+                    if (JudgeDLCorner(x, y, Pieces))
+                        FillDLCorner(brush, gp, gridsize, X, Y, radius);
+                    if (JudgeDRCorner(x, y, Pieces))
+                        FillDRCorner(brush, gp, gridsize, X, Y, radius);
+                    if (JudgeCenter(x, y, Pieces))
+                        FillCenter(brush, gp, gridsize, X, Y, radius);
+                    //用线勾勒轮廓
                     if (JudgeULCircle(x, y, Pieces))
                         DrawULCircle(pen, gp, gridsize, X, Y, radius);
                     if (JudgeURCircle(x, y, Pieces))
@@ -263,7 +394,6 @@ namespace DrawSubRegionPolyomino
                     if (JudgeDownLine(x, y, Pieces))
                         DrawDownLine(pen, gp, gridsize, X, Y, radius);
                 }
-
         }
 
         private void Refresh_Click(object sender, EventArgs e)
@@ -283,15 +413,15 @@ namespace DrawSubRegionPolyomino
             }
         }
 
-        private void Set_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BTNChangeColor_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
 
+        }
+
+        private void BTNBrushColor_Click(object sender, EventArgs e)
+        {
+            colorDialog2.ShowDialog();
         }
     }
 }
