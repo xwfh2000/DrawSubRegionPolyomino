@@ -362,11 +362,16 @@ namespace DrawSubRegionPolyomino
 
         private void DrawStr(Graphics gp, double gridsize, int X, int Y, string s)
         {
-            //  gp.DrawLine(pen, X, Y, X + radius, Y);
-            Font font = new Font("宋体", Convert.ToInt32(TBFontSize.Text));
-            Size size=TextRenderer.MeasureText(s,font);
-            gp.DrawString(s, font, new SolidBrush( colorDialog3.Color),
-                new PointF(X+(Single)(gridsize/2-size.Width/2), Y + (Single)(gridsize / 2 - size.Height / 2)));
+            int g = (int)gridsize;
+            TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter;
+            TextRenderer.DrawText(gp, s, new Font("宋体", Convert.ToInt32(TBFontSize.Text)),
+                new Rectangle(X, Y, g, g), colorDialog3.Color, flags);
+
+            //Size proposedSize = new Size(int.MaxValue, int.MaxValue);
+            //Font font = new Font("宋体", Convert.ToInt32(TBFontSize.Text));
+            //Size size=TextRenderer.MeasureText(s,font, proposedSize, flags);
+            //gp.DrawString(s, font, new SolidBrush( colorDialog3.Color),
+            //    new PointF(X+(Single)(gridsize/2-size.Width/2), Y + (Single)(gridsize / 2 - size.Height / 2)));
         }
 
         private void DrawPoly(Pen pen, Brush brush, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
@@ -467,6 +472,7 @@ namespace DrawSubRegionPolyomino
                 Console.WriteLine("Error writing app settings");
             }
         }
+
         static void ReadSetting(string key)
         {
             try
@@ -480,6 +486,7 @@ namespace DrawSubRegionPolyomino
                 Console.WriteLine("Error reading app settings");
             }
         }
+
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             AddUpdateAppSettings("GridSize", TBGridSize.Text);
