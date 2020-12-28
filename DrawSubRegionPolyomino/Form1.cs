@@ -1,4 +1,8 @@
 ﻿using System;
+
+using System.Configuration;
+using System.Collections.Specialized;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +19,13 @@ namespace DrawSubRegionPolyomino
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            TBGridSize.Text = ConfigurationManager.AppSettings.Get("GridSize");
+            TBRoundRatio.Text = ConfigurationManager.AppSettings.Get("RoundRatio");
+            TBPenwidth.Text = ConfigurationManager.AppSettings.Get("PenWidth");
+            TBFontSize.Text = ConfigurationManager.AppSettings.Get("FontSize");
+            colorDialog1.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("PenColor")));
+            colorDialog2.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("BrushColor")));
+            colorDialog3.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("FontColor")));
 
         }
 
@@ -351,8 +358,17 @@ namespace DrawSubRegionPolyomino
         {
             gp.DrawArc(pen, X + (Single)gridsize - 2 * radius, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 0, 90);
         }
-        #endregion             
-       
+        #endregion
+
+        private void DrawStr(Graphics gp, double gridsize, int X, int Y, string s)
+        {
+            //  gp.DrawLine(pen, X, Y, X + radius, Y);
+            Font font = new Font("宋体", Convert.ToInt32(TBFontSize.Text));
+            Size size=TextRenderer.MeasureText(s,font);
+            gp.DrawString(s, font, new SolidBrush( colorDialog3.Color),
+                new PointF(X+(Single)(gridsize/2-size.Width/2), Y + (Single)(gridsize / 2 - size.Height / 2)));
+        }
+
         private void DrawPoly(Pen pen, Brush brush, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
         {
             for (int x = 0; x < Pieces.GetLength(0); x++)
@@ -393,6 +409,11 @@ namespace DrawSubRegionPolyomino
                         DrawLmidLine(pen, gp, gridsize, X, Y, radius);
                     if (JudgeDownLine(x, y, Pieces))
                         DrawDownLine(pen, gp, gridsize, X, Y, radius);
+                    //画字体
+                    if (RBTNDraw.Checked == true)
+                    {
+                        DrawStr(gp, gridsize, X, Y, Pieces[x, y].groupNUm);
+                    }
                 }
         }
 
@@ -422,6 +443,57 @@ namespace DrawSubRegionPolyomino
         private void BTNBrushColor_Click(object sender, EventArgs e)
         {
             colorDialog2.ShowDialog();
+        }
+
+        static void AddUpdateAppSettings(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null)
+                {
+                    settings.Add(key, value);
+                }
+                else
+                {
+                    settings[key].Value = value;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error writing app settings");
+            }
+        }
+        static void ReadSetting(string key)
+        {
+            try
+            {
+                var appSettings = ConfigurationManager.AppSettings;
+                string result = appSettings[key] ?? "Not Found";
+                Console.WriteLine(result);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error reading app settings");
+            }
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            AddUpdateAppSettings("GridSize", TBGridSize.Text);
+            AddUpdateAppSettings("RoundRatio", TBRoundRatio.Text);
+            AddUpdateAppSettings("PenWidth", TBPenwidth.Text);
+            AddUpdateAppSettings("FontSize", TBFontSize.Text);
+            AddUpdateAppSettings("PenColor", colorDialog1.Color.ToArgb().ToString());
+            AddUpdateAppSettings("BrushColor", colorDialog2.Color.ToArgb().ToString());
+            AddUpdateAppSettings("FontColor", colorDialog3.Color.ToArgb().ToString());
+        }
+
+        private void BTNFontColor_Click(object sender, EventArgs e)
+        {
+            colorDialog3.ShowDialog();
         }
     }
 }
