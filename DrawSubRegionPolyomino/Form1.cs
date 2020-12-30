@@ -26,7 +26,33 @@ namespace DrawSubRegionPolyomino
             colorDialog1.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("PenColor")));
             colorDialog2.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("BrushColor")));
             colorDialog3.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("FontColor")));
+            string pies = ConfigurationManager.AppSettings.Get("Pieces");
 
+            for (int i = 0; i < pieces.GetLength(0); i++)
+                for (int j = 0; j < pieces.GetLength(1); j++)
+                {
+                    pieces[i, j].groupNUm = "";
+                }
+            string[] px = pies.Replace(" ", "").Replace("\r\n", "").Split('.');
+            for (int x = 0; x < px.Length; x++)
+            {
+                string row = px[x];
+                string[] con = row.Split(',');
+                for (int y = 0; y < con.Length; y++)
+                {                   
+                    string n = (x * 10 + y + 1).ToString();
+                    if (n.Length < 2)
+                        n = "0" + n;
+                    //判断是为TextBox框
+                    foreach (Control item in panel1.Controls)
+                    {
+                       if (item is TextBox && (item.Name == "textBox" + n))
+                        {
+                            item.Text = con[y];
+                        }
+                    }
+                }
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -37,13 +63,8 @@ namespace DrawSubRegionPolyomino
             float penWidth = Convert.ToSingle(TBPenwidth.Text);
             Color penColor = colorDialog1.Color;
             Color brushColor = colorDialog2.Color;
+            Color fontColor = colorDialog3.Color;
             List<Point> pts = new List<Point>();
-            Piece[,] pieces = new Piece[10, 10];
-            for (int i = 0; i < pieces.GetLength(0); i++)
-                for (int j = 0; j < pieces.GetLength(1); j++)
-                {
-                    pieces[i, j].groupNUm = "";
-                }
             foreach (Control item in panel1.Controls)
             {
                 //判断是为TextBox框
@@ -54,16 +75,15 @@ namespace DrawSubRegionPolyomino
                     pieces[textnum % 10, textnum / 10].groupNUm = item.Text;
                 }
             }
-
-            DrawPoly(new Pen(penColor, penWidth), new SolidBrush(brushColor), gp, gridsize, pieces, roundratio);
+            DrawPoly(new Pen(penColor, penWidth), new SolidBrush(brushColor), fontColor, gp, gridsize, pieces, roundratio);
             gp.Dispose();
         }
 
         struct Piece
         {
             public string groupNUm;
-        }        
-
+        }
+        Piece[,] pieces = new Piece[10, 10];
         /// <summary>
         /// 取临近的组
         /// </summary>
@@ -360,12 +380,12 @@ namespace DrawSubRegionPolyomino
         }
         #endregion
 
-        private void DrawStr(Graphics gp, double gridsize, int X, int Y, string s)
+        private void DrawStr(Graphics gp, Color fontColor, double gridsize, int X, int Y, string s)
         {
             int g = (int)gridsize;
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter;
             TextRenderer.DrawText(gp, s, new Font("宋体", Convert.ToInt32(TBFontSize.Text)),
-                new Rectangle(X, Y, g, g), colorDialog3.Color, flags);
+                new Rectangle(X, Y, g, g), fontColor, flags);
 
             //Size proposedSize = new Size(int.MaxValue, int.MaxValue);
             //Font font = new Font("宋体", Convert.ToInt32(TBFontSize.Text));
@@ -374,7 +394,7 @@ namespace DrawSubRegionPolyomino
             //    new PointF(X+(Single)(gridsize/2-size.Width/2), Y + (Single)(gridsize / 2 - size.Height / 2)));
         }
 
-        private void DrawPoly(Pen pen, Brush brush, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
+        private void DrawPoly(Pen pen, Brush brush, Color fontColor, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
         {
             for (int x = 0; x < Pieces.GetLength(0); x++)
                 for (int y = 0; y < Pieces.GetLength(1); y++)
@@ -417,7 +437,7 @@ namespace DrawSubRegionPolyomino
                     //画字体
                     if (RBTNDraw.Checked == true)
                     {
-                        DrawStr(gp, gridsize, X, Y, Pieces[x, y].groupNUm);
+                        DrawStr(gp, fontColor, gridsize, X, Y, Pieces[x, y].groupNUm);
                     }
                 }
         }
@@ -496,6 +516,33 @@ namespace DrawSubRegionPolyomino
             AddUpdateAppSettings("PenColor", colorDialog1.Color.ToArgb().ToString());
             AddUpdateAppSettings("BrushColor", colorDialog2.Color.ToArgb().ToString());
             AddUpdateAppSettings("FontColor", colorDialog3.Color.ToArgb().ToString());
+            string pies = "";
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    string n = (i * 10 + j + 1).ToString();
+                    if (n.Length < 2)
+                        n = "0" + n;
+                    foreach (Control item in panel1.Controls)
+                    {                       
+                        //判断是为TextBox框
+                        if (item is TextBox)
+                        {
+                            if (item.Name == "textBox" + n)
+                            {
+                                pies += item.Text!=""? item.Text:"";
+                                if (j < 9)
+                                    pies += ",";
+                            }
+                            
+                        }
+                    }
+                }
+                if (i < 9)
+                    pies += ".\r\n";
+            }
+            AddUpdateAppSettings("Pieces", pies);
         }
 
         private void BTNFontColor_Click(object sender, EventArgs e)
