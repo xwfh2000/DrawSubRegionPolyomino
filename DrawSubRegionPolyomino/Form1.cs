@@ -31,13 +31,13 @@ namespace DrawSubRegionPolyomino
             for (int i = 0; i < pieces.GetLength(0); i++)
                 for (int j = 0; j < pieces.GetLength(1); j++)
                 {
-                    pieces[i, j].groupNUm = "";
+                    pieces[i, j].contents = "";
                 }
             string[] px = pies.Replace(" ", "").Replace("\r\n", "").Split('.');
             for (int x = 0; x < px.Length; x++)
             {
                 string row = px[x];
-                string[] con = row.Split(',');
+                string[] con = row.Split('|');
                 for (int y = 0; y < con.Length; y++)
                 {                   
                     string n = (x * 10 + y + 1).ToString();
@@ -68,11 +68,11 @@ namespace DrawSubRegionPolyomino
             foreach (Control item in panel1.Controls)
             {
                 //判断是为TextBox框
-                if (item is TextBox && item.Text != "")
+                if (item is TextBox /*&& item.Text != ""*/)
                 {
                     string name = item.Name;
                     int textnum = Convert.ToInt32(name.Substring(7, name.Length - 7)) - 1;
-                    pieces[textnum % 10, textnum / 10].groupNUm = item.Text;
+                    pieces[textnum % 10, textnum / 10].contents = item.Text;
                 }
             }
             DrawPoly(new Pen(penColor, penWidth), new SolidBrush(brushColor), fontColor, gp, gridsize, pieces, roundratio);
@@ -81,7 +81,7 @@ namespace DrawSubRegionPolyomino
 
         struct Piece
         {
-            public string groupNUm;
+            public string contents;
         }
         Piece[,] pieces = new Piece[10, 10];
         /// <summary>
@@ -94,35 +94,35 @@ namespace DrawSubRegionPolyomino
         #region 
         private string GetLeftGorup(int x, int y, Piece[,] Pieces)
         {
-            return x - 1 < 0 ? "" : Pieces[x - 1, y].groupNUm;
+            return x - 1 < 0 ? "0,0,0" : Pieces[x - 1, y].contents;
         }
         private string GetRightGorup(int x, int y, Piece[,] Pieces)
         {
-            return x + 1 > Pieces.GetLength(0) - 1 ? "" : Pieces[x + 1, y].groupNUm;
+            return x + 1 > Pieces.GetLength(0) - 1 ? "0,0,0" : Pieces[x + 1, y].contents;
         }
         private string GetUpGorup(int x, int y, Piece[,] Pieces)
         {
-            return y - 1 < 0 ? "" : Pieces[x, y - 1].groupNUm;
+            return y - 1 < 0 ? "0,0,0" : Pieces[x, y - 1].contents;
         }
         private string GetDownGorup(int x, int y, Piece[,] Pieces)
         {
-            return y + 1 > Pieces.GetLength(1) - 1 ? "" : Pieces[x, y + 1].groupNUm;
+            return y + 1 > Pieces.GetLength(1) - 1 ? "0,0,0" : Pieces[x, y + 1].contents;
         }
         private string GetULGroup(int x, int y, Piece[,] Pieces)
         {
-            return (x - 1 < 0 || y - 1 < 0) ? "" : Pieces[x - 1, y - 1].groupNUm;
+            return (x - 1 < 0 || y - 1 < 0) ? "0,0,0" : Pieces[x - 1, y - 1].contents;
         }
         private string GetURGroup(int x, int y, Piece[,] Pieces)
         {
-            return (x + 1 > Pieces.GetLength(0) - 1 || y - 1 < 0) ? "" : Pieces[x + 1, y - 1].groupNUm;
+            return (x + 1 > Pieces.GetLength(0) - 1 || y - 1 < 0) ? "0,0,0" : Pieces[x + 1, y - 1].contents;
         }
         private string GetDLroup(int x, int y, Piece[,] Pieces)
         {
-            return (x - 1 < 0 || y + 1 > Pieces.GetLength(1) - 1) ? "" : Pieces[x - 1, y + 1].groupNUm;
+            return (x - 1 < 0 || y + 1 > Pieces.GetLength(1) - 1) ? "0,0,0" : Pieces[x - 1, y + 1].contents;
         }
         private string GetDRGroup(int x, int y, Piece[,] Pieces)
         {
-            return (x + 1 > Pieces.GetLength(0) - 1 || y + 1 > Pieces.GetLength(1) - 1) ? "" : Pieces[x + 1, y + 1].groupNUm;
+            return (x + 1 > Pieces.GetLength(0) - 1 || y + 1 > Pieces.GetLength(1) - 1) ? "0,0,0" : Pieces[x + 1, y + 1].contents;
         }
         #endregion
 
@@ -136,36 +136,52 @@ namespace DrawSubRegionPolyomino
         #region
         private bool JudgeULCorner(int x, int y, Piece[,] Pieces)
         {
-            string l = GetLeftGorup(x, y, Pieces);
-            string u = GetUpGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return me != "" && (l == me || u == me);
+            string[] M = Pieces[x, y].contents.Split(',');
+            if (M[0] == "0")
+                return false;
+            return !JudgeULCircle(x,y,pieces);
+            //string[] l = GetLeftGorup(x, y, Pieces).Split(',');
+            //string[] u = GetUpGorup(x, y, Pieces).Split(',');
+            //string[] me = Pieces[x, y].contents.Split(',');
+            //return me[0] != "" && (( l[0]== me[0]&& l[0] == me[0]) || (u[0] == me[0]&& u[1] == me[1]));
         }
         private bool JudgeURCorner(int x, int y, Piece[,] Pieces)
         {
-            string R = GetRightGorup(x, y, Pieces);
-            string u = GetUpGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return me != "" && (R == me || u == me);
+            string[] M = Pieces[x, y].contents.Split(',');
+            if (M[0] == "0")
+                return false;
+            return !JudgeURCircle(x,y,pieces);
+            //string[] r = GetRightGorup(x, y, Pieces).Split(',');
+            //string[] u = GetUpGorup(x, y, Pieces).Split(',');
+            //string[] me = Pieces[x, y].contents.Split(',');
+            //return me[0] != "" && ((r[0] == me[0]&& r[0] == me[0]) || (u[0] == me[0]&& u[1] == me[1]));
         }
         private bool JudgeDLCorner(int x, int y, Piece[,] Pieces)
         {
-            string l = GetLeftGorup(x, y, Pieces);
-            string d = GetDownGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return me != "" && (l == me || d == me);
+            string[] M = Pieces[x, y].contents.Split(',');
+            if (M[0] == "0")
+                return false;
+            return !JudgeDLCircle(x, y, pieces);
+            //string[] l = GetLeftGorup(x, y, Pieces).Split(',');
+            //string[] d = GetDownGorup(x, y, Pieces).Split(',');
+            //string[] me = Pieces[x, y].contents.Split(',');
+            //return me[0] != "" && ((l[0] == me[0]&& l[1] == me[1]) || (d[0] == me[0]&& d[1] == me[1]));
         }
         private bool JudgeDRCorner(int x, int y, Piece[,] Pieces)
         {
-            string r = GetRightGorup(x, y, Pieces);
-            string d = GetDownGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return me != "" && (r == me || d == me);
+            string[] M = Pieces[x, y].contents.Split(',');
+            if (M[0] == "0")
+                return false;
+            return !JudgeDRCircle(x, y, pieces);
+            //string[] r = GetRightGorup(x, y, Pieces).Split(',');
+            //string[] d = GetDownGorup(x, y, Pieces).Split(',');
+            //string[] me = Pieces[x, y].contents.Split(',');
+            //return me[0] != "" && ((r[0] == me[0]&& r[1] == me[1]) || (d[0] == me[0]& d[1] == me[1]));
         }
         private bool JudgeCenter(int x, int y, Piece[,] Pieces)
         {
-            string me = Pieces[x, y].groupNUm;
-            return me != "";
+            string[] me = Pieces[x, y].contents.Split(',');
+            return me[0] != "0";
         }
         #endregion
 
@@ -180,7 +196,7 @@ namespace DrawSubRegionPolyomino
         /// <param name="radius"></param>
         #region
         private void FillULCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
-        {
+        { //画直角月牙
             GraphicsPath gp = new GraphicsPath();
             gp.AddLine(X + radius, Y, X, Y);
             gp.AddLine(X, Y, X, Y - radius);
@@ -191,7 +207,7 @@ namespace DrawSubRegionPolyomino
             r.Dispose();
         }
         private void FillURCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
-        {
+        {  //画直角月牙
             GraphicsPath gp = new GraphicsPath();
             gp.AddArc(X + (Single)gridsize - 2 * radius, Y, 2 * radius, 2 * radius, 270, 90);
             gp.AddLine(X + (Single)gridsize, Y + radius, X + (Single)gridsize, Y);
@@ -202,7 +218,7 @@ namespace DrawSubRegionPolyomino
             r.Dispose();
         }
         private void FillDLCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
-        {
+        {  //画直角月牙
             GraphicsPath gp = new GraphicsPath();
             gp.AddArc(X, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 90, 90);
             gp.AddLine(X, Y + (Single)gridsize - radius, X, Y + (Single)gridsize);
@@ -213,7 +229,7 @@ namespace DrawSubRegionPolyomino
             r.Dispose();
         }
         private void FillDRCorner(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
-        {
+        {   //画直角月牙
             GraphicsPath gp = new GraphicsPath();
             gp.AddArc(X + (Single)gridsize - 2 * radius, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 0, 90);
             gp.AddLine(X + (Single)gridsize - radius, Y + (Single)gridsize, X + (Single)gridsize, Y + (Single)gridsize);
@@ -224,7 +240,7 @@ namespace DrawSubRegionPolyomino
             r.Dispose();
         }
         private void FillCenter(Brush brush, Graphics g, double gridsize, int X, int Y, int radius)
-        {
+        {  //画圆角矩形
             GraphicsPath gp = new GraphicsPath();
             gp.AddArc(X + (Single)gridsize - 2 * radius, Y + (Single)gridsize - 2 * radius, 2 * radius, 2 * radius, 0, 90);
             gp.AddLine(X + (Single)gridsize - radius, Y + (Single)gridsize, X + radius, Y + (Single)gridsize);
@@ -252,79 +268,131 @@ namespace DrawSubRegionPolyomino
         #region
         private bool JudgeULCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetLeftGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                GetUpGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                Pieces[x, y].groupNUm != "";
+            string[] L = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] U = GetUpGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+
+            if (L[0] == M[0] && L[1] == M[1])
+                return false;
+            if (U[0] == M[0] && U[1] == M[1])
+                return false;
+            if (M[0] == "0")
+                return false;
+            return true;
+
+            //return GetLeftGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    GetUpGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    Pieces[x, y].contents != "";
         }
         private bool JudgeURCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetRightGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                GetUpGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                Pieces[x, y].groupNUm != "";
+            string[] R = GetRightGorup(x, y, Pieces).Split(',');
+            string[] U = GetUpGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+
+            if (R[0] == M[0] && R[1] == M[1])
+                return false;
+            if (U[0] == M[0] && U[1] == M[1])
+                return false;
+            if (M[0] == "0")
+                return false;
+            return true;
+            //return GetRightGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    GetUpGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    Pieces[x, y].contents != "";
         }
         private bool JudgeDLCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetLeftGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                GetDownGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                Pieces[x, y].groupNUm != "";
+            string[] L = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] D = GetDownGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+
+            if (L[0] == M[0] && L[1] == M[1])
+                return false;
+            if (D[0] == M[0] && D[1] == M[1])
+                return false;
+            if (M[0] == "0")
+                return false;
+            return true;
+            //return GetLeftGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    GetDownGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    Pieces[x, y].contents != "";
         }
         private bool JudgeDRCircle(int x, int y, Piece[,] Pieces)
         {
-            return GetDownGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                GetRightGorup(x, y, Pieces) != Pieces[x, y].groupNUm &&
-                Pieces[x, y].groupNUm != "";
+            string[] R = GetRightGorup(x, y, Pieces).Split(',');
+            string[] D = GetDownGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+
+            if (R[0] == M[0] && R[1] == M[1])
+                return false;
+            if (D[0] == M[0] && D[1] == M[1])
+                return false;
+            if (M[0] == "0")
+                return false;
+            return true;
+            //return GetDownGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    GetRightGorup(x, y, Pieces) != Pieces[x, y].contents &&
+            //    Pieces[x, y].contents != "";
         }
         private bool JudgeLeftLine(int x, int y, Piece[,] Pieces)
         {
             //  aa       b  
             //   --  或  --
             //  |b     a|a
-            string l = GetLeftGorup(x, y, Pieces);
-            string ul = GetULGroup(x, y, Pieces);
-            string u = GetUpGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return (u != "" && u == ul && u != me) || (l != "" && l == me && u != me);
+            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] ul = GetULGroup(x, y, Pieces).Split(',');
+            string[] u = GetUpGorup(x, y, Pieces).Split(',');
+            string[] me = Pieces[x, y].contents.Split(',');
+            return (u[0] != "0" && (u[0] == ul[0]&& u[1] == ul[1]) && !(u[0] == me[0]&& u[1] == me[1])) || 
+                (l[0] != "" &&( l[0] == me[0]&& l[1] == me[1]) && !(u[0] == me[0] && u[1] == me[1]));
         }
         private bool JudgeMidLine(int x, int y, Piece[,] Pieces)
         {
-            string u = GetUpGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return (u == "" && me != "") || (me == "" && u != "");
+            string[] u = GetUpGorup(x, y, Pieces).Split(',');
+            string[] me = Pieces[x, y].contents.Split(',');
+            return (u[0] == "0" && me[0] != "0") || (me[0] == "0" && u[0] != "0");
         }
         private bool JudgeRightLine(int x, int y, Piece[,] Pieces)
         {
             // aa    b
             // -     -
             // b|    a|a
-            string r = GetRightGorup(x, y, Pieces);
-            string ur = GetURGroup(x, y, Pieces);
-            string u = GetUpGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return (u != "" && u == ur && u != me) || (r != "" && r == me && u != me);
+            string[] r = GetRightGorup(x, y, Pieces).Split(',');
+            string[] ur = GetURGroup(x, y, Pieces).Split(',');
+            string[] u = GetUpGorup(x, y, Pieces).Split(',');
+            string[] me = Pieces[x, y].contents.Split(',');
+            return (u[0] != "0" && (u[0] == ur[0]&& u[1] == ur[1]) && !(u[0] == me[0] && u[1] == me[1]) || 
+                (r[0] != "0" && (r[0] == me[0]&& r[1] == me[1]) && !(u[0] == me[0] && u[1] == me[1])));
         }
         private bool JudgeUpLine(int x, int y, Piece[,] Pieces)
         {
             //a       a
             //a|b   b|a
-            string l = GetLeftGorup(x, y, Pieces);
-            string ul = GetULGroup(x, y, Pieces);
-            string u = GetUpGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return (l != "" && l == ul && l != me) || (u != "" && u == me && l != me);
+            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] ul = GetULGroup(x, y, Pieces).Split(',');
+            string[] u = GetUpGorup(x, y, Pieces).Split(',');
+            string[] me = Pieces[x, y].contents.Split(',');
+            return (l[0] != "0" && (l[0] == ul[0]&& l[1] == ul[1]) && !(l[0]== me[0]&&l[1] == me[1])) || 
+                (u[0] != "0" && (u[0] == me[0]&& u[1] == me[1]) && !(l[0] == me[0] && l[1] == me[1]));
         }
         private bool JudgeLmidLine(int x, int y, Piece[,] Pieces)
         {
-            string l = GetLeftGorup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return (l == "" && me != "") || (me == "" && l != "");
+            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] me = Pieces[x, y].contents.Split(',');
+            return (l[0] == "0" && me[0] != "0") || (me[0] == "0" && l[0] != "0");
+           // return (l == "" && me != "") || (me == "" && l != "");
         }
         private bool JudgeDownLine(int x, int y, Piece[,] Pieces)
         {
-            string d = GetDownGorup(x, y, Pieces);
-            string l = GetLeftGorup(x, y, Pieces);
-            string dl = GetDLroup(x, y, Pieces);
-            string me = Pieces[x, y].groupNUm;
-            return (d != "" && d == me && l != me) || (l != "" && l == dl && l != me);
+            string[] d = GetDownGorup(x, y, Pieces).Split(',');
+            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] dl = GetDLroup(x, y, Pieces).Split(',');
+            string[] me = Pieces[x, y].contents.Split(',');
+
+            return (d[0] != "0" && (d[0] == me[0]&& d[1] == me[1]) && !(l[0] == me[0]&& l[1] == me[1])) || 
+                (l[0] != "0" && (l[0] == dl[0]&& l[1] == dl[1]) && !(l[0] == me[0]&& l[1] == me[1]));
+            //return (d != "" && d == me && l != me) || (l != "" && l == dl && l != me);
         }
         #endregion
 
@@ -422,6 +490,7 @@ namespace DrawSubRegionPolyomino
                         DrawDLCircle(pen, gp, gridsize, X, Y, radius);
                     if (JudgeDRCircle(x, y, Pieces))
                         DrawDRCircle(pen, gp, gridsize, X, Y, radius);
+
                     if (JudgeLeftLine(x, y, Pieces))
                         DrawLeftLine(pen, gp, gridsize, X, Y, radius);
                     if (JudgeMidLine(x, y, Pieces))
@@ -437,7 +506,8 @@ namespace DrawSubRegionPolyomino
                     //画字体
                     if (RBTNDraw.Checked == true)
                     {
-                        DrawStr(gp, fontColor, gridsize, X, Y, Pieces[x, y].groupNUm);
+                        string[] groupNUm = Pieces[x, y].contents.Split(',');
+                        DrawStr(gp, fontColor, gridsize, X, Y,groupNUm[2]);
                     }
                 }
         }
@@ -531,16 +601,16 @@ namespace DrawSubRegionPolyomino
                         {
                             if (item.Name == "textBox" + n)
                             {
-                                pies += item.Text!=""? item.Text:"";
+                                pies += item.Text!=""? item.Text:"0，0，0";//0组表示为空。,为小分割
                                 if (j < 9)
-                                    pies += ",";
+                                    pies += "|";//|为中分割
                             }
                             
                         }
                     }
                 }
                 if (i < 9)
-                    pies += ".\r\n";
+                    pies += ".";// .为大分割
             }
             AddUpdateAppSettings("Pieces", pies);
         }
