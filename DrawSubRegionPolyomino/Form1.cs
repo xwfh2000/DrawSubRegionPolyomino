@@ -531,7 +531,7 @@ namespace DrawSubRegionPolyomino
                 //判断是为TextBox框
                 if (item is TextBox)
                 {
-                    item.Text = "";
+                    item.Text = "0,0,0";
                 }
             }
         }
