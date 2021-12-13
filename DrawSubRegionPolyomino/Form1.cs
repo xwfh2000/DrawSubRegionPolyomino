@@ -337,62 +337,69 @@ namespace DrawSubRegionPolyomino
         }
         private bool JudgeLeftLine(int x, int y, Piece[,] Pieces)
         {
-            //  aa       b  
-            //   --  或  --
-            //  |b     a|a
-            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
-            string[] ul = GetULGroup(x, y, Pieces).Split(',');
-            string[] u = GetUpGorup(x, y, Pieces).Split(',');
-            string[] me = Pieces[x, y].contents.Split(',');
-            return (u[0] != "0" && (u[0] == ul[0]&& u[1] == ul[1]) && !(u[0] == me[0]&& u[1] == me[1])) || 
-                (l[0] != "" &&( l[0] == me[0]&& l[1] == me[1]) && !(u[0] == me[0] && u[1] == me[1]));
+            string[] UL = GetULGroup(x, y, Pieces).Split(',');
+            string[] U = GetUpGorup(x, y, Pieces).Split(',');
+            string[] L = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+            //          UL不为空，且UL与U大小组相等，且U与M ！(大小组相等)
+            //对称情况：M不为空，且M与L大小组相等，且U与M ！(大小组相等)
+            //总结： U与M ！(大小组相等) 且 （U不为空且UL与U大小组相等||M不为空且M与L大小组相等）
+            return !(U[0] == M[0] && U[1] == M[1]) &&
+            ((U[0]!="0"&&UL[0] == U[0] && UL[1] == U[1])|| 
+             (M[0]!="0"&&M[0] == L[0] && M[1] == L[1]));                
         }
         private bool JudgeMidLine(int x, int y, Piece[,] Pieces)
         {
-            string[] u = GetUpGorup(x, y, Pieces).Split(',');
-            string[] me = Pieces[x, y].contents.Split(',');
-            return (u[0] == "0" && me[0] != "0") || (me[0] == "0" && u[0] != "0");
+            string[] U = GetUpGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+            //大组不同
+            return U[0] != M[0];
         }
         private bool JudgeRightLine(int x, int y, Piece[,] Pieces)
         {
-            // aa    b
-            // -     -
-            // b|    a|a
-            string[] r = GetRightGorup(x, y, Pieces).Split(',');
-            string[] ur = GetURGroup(x, y, Pieces).Split(',');
-            string[] u = GetUpGorup(x, y, Pieces).Split(',');
-            string[] me = Pieces[x, y].contents.Split(',');
-            return (u[0] != "0" && (u[0] == ur[0]&& u[1] == ur[1]) && !(u[0] == me[0] && u[1] == me[1]) || 
-                (r[0] != "0" && (r[0] == me[0]&& r[1] == me[1]) && !(u[0] == me[0] && u[1] == me[1])));
+            string[] UR = GetURGroup(x, y, Pieces).Split(',');
+            string[] U = GetUpGorup(x, y, Pieces).Split(',');
+            string[] R = GetRightGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+            //          UR不为空，且UR与U大小组相等，且U与M ！(大小组相等)
+            //对称情况：M不为空，且M与R大小组相等，且U与M ！(大小组相等)
+            //总结： U与M ！(大小组相等) 且 （U不为空且UR与U大小组相等||M不为空且M与R大小组相等）
+            return !(U[0] == M[0] && U[1] == M[1]) &&
+            ((U[0] != "0" && UR[0] == U[0] && UR[1] == U[1]) ||
+             (M[0] != "0" && M[0] == R[0] && M[1] ==R[1]));
         }
         private bool JudgeUpLine(int x, int y, Piece[,] Pieces)
         {
-            //a       a
-            //a|b   b|a
-            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
-            string[] ul = GetULGroup(x, y, Pieces).Split(',');
-            string[] u = GetUpGorup(x, y, Pieces).Split(',');
-            string[] me = Pieces[x, y].contents.Split(',');
-            return (l[0] != "0" && (l[0] == ul[0]&& l[1] == ul[1]) && !(l[0]== me[0]&&l[1] == me[1])) || 
-                (u[0] != "0" && (u[0] == me[0]&& u[1] == me[1]) && !(l[0] == me[0] && l[1] == me[1]));
+            string[] UL = GetULGroup(x, y, Pieces).Split(',');
+            string[] L = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] U = GetUpGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+            //          UL不为空，且UL与L大小组相等，且L与M ！(大小组相等)
+            //对称情况：M不为空，且M与U大小组相等，且L与M ！(大小组相等)
+            //总结： L与M ！(大小组相等) 且 （UL不为空且UL与L大小组相等||M不为空且M与U大小组相等）
+            return !(L[0] == M[0] && L[1] == M[1]) &&
+            ((UL[0] != "0" && UL[0] == L[0] && UL[1] == L[1]) ||
+             (M[0] != "0" && M[0] == U[0] && M[1] == U[1]));
         }
         private bool JudgeLmidLine(int x, int y, Piece[,] Pieces)
         {
-            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
-            string[] me = Pieces[x, y].contents.Split(',');
-            return (l[0] == "0" && me[0] != "0") || (me[0] == "0" && l[0] != "0");
-           // return (l == "" && me != "") || (me == "" && l != "");
+            string[] L = GetLeftGorup(x, y, Pieces).Split(',');
+            string[] M = Pieces[x, y].contents.Split(',');
+            //L和M不同组
+            return L[0] != M[0];
         }
         private bool JudgeDownLine(int x, int y, Piece[,] Pieces)
         {
-            string[] d = GetDownGorup(x, y, Pieces).Split(',');
-            string[] l = GetLeftGorup(x, y, Pieces).Split(',');
-            string[] dl = GetDLroup(x, y, Pieces).Split(',');
-            string[] me = Pieces[x, y].contents.Split(',');
-
-            return (d[0] != "0" && (d[0] == me[0]&& d[1] == me[1]) && !(l[0] == me[0]&& l[1] == me[1])) || 
-                (l[0] != "0" && (l[0] == dl[0]&& l[1] == dl[1]) && !(l[0] == me[0]&& l[1] == me[1]));
-            //return (d != "" && d == me && l != me) || (l != "" && l == dl && l != me);
+            string[] DL = GetDLroup(x, y, Pieces).Split(',');
+            string[] D = GetDownGorup(x, y, Pieces).Split(',');
+            string[] L = GetLeftGorup(x, y, Pieces).Split(',');            
+            string[] M = Pieces[x, y].contents.Split(',');
+            //          DL不为空，且DL与L大小组相等，且L与M ！(大小组相等)
+            //对称情况：M不为空，且M与D大小组相等，且L与M ！(大小组相等)
+            //总结： L与M ！(大小组相等) 且 （DL不为空且DL与L大小组相等||M不为空且M与D大小组相等）
+            return !(L[0] == M[0] && L[1] == M[1]) &&
+            ((DL[0] != "0" && DL[0] == L[0] && DL[1] == L[1]) ||
+             (M[0] != "0" && M[0] == D[0] && M[1] == D[1]));
         }
         #endregion
 
