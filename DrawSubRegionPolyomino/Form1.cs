@@ -19,6 +19,7 @@ namespace DrawSubRegionPolyomino
         public Form1()
         {
             InitializeComponent();
+            KeyPreview = true;
             TBGridSize.Text = ConfigurationManager.AppSettings.Get("GridSize");
             TBRoundRatio.Text = ConfigurationManager.AppSettings.Get("RoundRatio");
             TBPenwidth.Text = ConfigurationManager.AppSettings.Get("PenWidth");
@@ -511,7 +512,7 @@ namespace DrawSubRegionPolyomino
                     if (JudgeDownLine(x, y, Pieces))
                         DrawDownLine(pen, gp, gridsize, X, Y, radius);
                     //画字体
-                    if (RBTNDraw.Checked == true)
+                    if (RBTNDraw.Checked == true&&"0,0,0"!= Pieces[x, y].contents)
                     {
                         string[] groupNUm = Pieces[x, y].contents.Split(',');
                         DrawStr(gp, fontColor, gridsize, X, Y,groupNUm[2]);
@@ -531,20 +532,22 @@ namespace DrawSubRegionPolyomino
                 //判断是为TextBox框
                 if (item is TextBox)
                 {
-                    item.Text = "0,0,0";
+                    item.Text = "0,,";
                 }
             }
+            Invalidate();
         }
 
         private void BTNChangeColor_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-
+            Invalidate();
         }
 
         private void BTNBrushColor_Click(object sender, EventArgs e)
         {
             colorDialog2.ShowDialog();
+            Invalidate();
         }
 
         static void AddUpdateAppSettings(string key, string value)
@@ -625,6 +628,144 @@ namespace DrawSubRegionPolyomino
         private void BTNFontColor_Click(object sender, EventArgs e)
         {
             colorDialog3.ShowDialog();
+            Invalidate();
+        }
+
+        string[,] GetMapStrs()
+        {
+            string[,] Map = new string[10, 10];
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    string n = (i * 10 + j + 1).ToString();
+                    if (n.Length < 2)
+                        n = "0" + n;
+                    foreach (Control item in panel1.Controls)
+                    {
+                        //判断是为TextBox框
+                        if (item is TextBox&& item.Name == "textBox" + n)
+                        {
+                            Map[i, j] = item.Text;
+                        }
+                    }
+                }
+            }
+            return Map;
+        }
+        string [,] MoveMap(string[,] Map,int direction)// 0:上 1:下 2:左 3:右 
+        {
+            switch (direction)
+            {
+                case 0:
+                    for(int col=0;col<10;col++)
+                    {
+                        string temp = Map[0, col];
+                        for (int row=0;row<9;row++)
+                        {
+                            Map[row, col] = Map[row + 1, col];
+                        }
+                        Map[9, col] = temp;
+                    }
+                    break;
+                case 1:
+                    for (int col = 0; col < 10; col++)
+                    {
+                        string temp = Map[9, col];
+                        for (int row = 9; row > 0; row--)
+                        {
+                            Map[row, col] = Map[row - 1, col];
+                        }
+                        Map[0, col] = temp;
+                    }
+                    break;
+                case 2:
+                    for (int row = 0; row < 10; row++)
+                    {
+                        string temp = Map[row, 0];
+                        for (int col = 0; col < 9; col++)
+                        {
+                            Map[row, col] = Map[row, col+1];
+                        }
+                        Map[row, 9] = temp;
+                    }
+                    break;
+                case 3:
+                    for (int row = 0; row < 10; row++)
+                    {
+                        string temp = Map[row, 9];
+                        for (int col = 9; col > 0; col--)
+                        {
+                            Map[row, col] = Map[row, col-1];
+                        }
+                        Map[row, 0] = temp;
+                    }
+                    break;
+            }
+            return Map;
+        }
+        void RestoreMap(string[,] map)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    string n = (i * 10 + j + 1).ToString();
+                    if (n.Length < 2)
+                        n = "0" + n;
+                    foreach (Control item in panel1.Controls)
+                    {
+                        //判断是为TextBox框
+                        if (item is TextBox&& item.Name == "textBox" + n)
+                        {
+                            item.Text = map[i, j];
+                        }
+                    }
+                }
+            }
+        }
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = MoveMap(map, 0);
+            RestoreMap(map);
+            Invalidate();
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = MoveMap(map, 1);
+            RestoreMap(map);
+            Invalidate();
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = MoveMap(map, 2);
+            RestoreMap(map);
+            Invalidate();
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = MoveMap(map, 3);
+            RestoreMap(map);
+            Invalidate();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+                btnUp.PerformClick();
+            if (e.KeyCode == Keys.Down)
+                btnDown.PerformClick();
+            if (e.KeyCode == Keys.Left)
+                btnLeft.PerformClick();
+            if (e.KeyCode == Keys.Right)
+                btnRight.PerformClick();
         }
     }
 }

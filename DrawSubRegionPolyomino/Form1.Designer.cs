@@ -148,6 +148,10 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.colorDialog3 = new System.Windows.Forms.ColorDialog();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnRight = new System.Windows.Forms.Button();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -263,8 +267,12 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.radioButton2);
+            this.panel2.Controls.Add(this.btnDown);
             this.panel2.Controls.Add(this.RBTNDraw);
+            this.panel2.Controls.Add(this.btnLeft);
+            this.panel2.Controls.Add(this.radioButton2);
+            this.panel2.Controls.Add(this.btnRight);
+            this.panel2.Controls.Add(this.btnUp);
             this.panel2.Controls.Add(this.TBFontSize);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.BTNFontColor);
@@ -288,7 +296,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton2.Location = new System.Drawing.Point(329, 53);
+            this.radioButton2.Location = new System.Drawing.Point(107, 53);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(65, 23);
             this.radioButton2.TabIndex = 118;
@@ -300,7 +308,7 @@
             this.RBTNDraw.AutoSize = true;
             this.RBTNDraw.Checked = true;
             this.RBTNDraw.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.RBTNDraw.Location = new System.Drawing.Point(207, 53);
+            this.RBTNDraw.Location = new System.Drawing.Point(18, 53);
             this.RBTNDraw.Name = "RBTNDraw";
             this.RBTNDraw.Size = new System.Drawing.Size(84, 23);
             this.RBTNDraw.TabIndex = 117;
@@ -311,7 +319,7 @@
             // TBFontSize
             // 
             this.TBFontSize.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TBFontSize.Location = new System.Drawing.Point(115, 50);
+            this.TBFontSize.Location = new System.Drawing.Point(282, 50);
             this.TBFontSize.Multiline = true;
             this.TBFontSize.Name = "TBFontSize";
             this.TBFontSize.Size = new System.Drawing.Size(51, 29);
@@ -322,7 +330,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(13, 55);
+            this.label2.Location = new System.Drawing.Point(187, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 19);
             this.label2.TabIndex = 115;
@@ -331,7 +339,7 @@
             // BTNFontColor
             // 
             this.BTNFontColor.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BTNFontColor.Location = new System.Drawing.Point(349, 95);
+            this.BTNFontColor.Location = new System.Drawing.Point(347, 48);
             this.BTNFontColor.Name = "BTNFontColor";
             this.BTNFontColor.Size = new System.Drawing.Size(97, 32);
             this.BTNFontColor.TabIndex = 114;
@@ -342,7 +350,7 @@
             // BTNBrushColor
             // 
             this.BTNBrushColor.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BTNBrushColor.Location = new System.Drawing.Point(183, 95);
+            this.BTNBrushColor.Location = new System.Drawing.Point(122, 95);
             this.BTNBrushColor.Margin = new System.Windows.Forms.Padding(2);
             this.BTNBrushColor.Name = "BTNBrushColor";
             this.BTNBrushColor.Size = new System.Drawing.Size(97, 32);
@@ -366,16 +374,16 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(323, 15);
+            this.label4.Location = new System.Drawing.Point(330, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 19);
+            this.label4.Size = new System.Drawing.Size(57, 19);
             this.label4.TabIndex = 8;
-            this.label4.Text = "线宽：";
+            this.label4.Text = "线宽:";
             // 
             // Empty
             // 
             this.Empty.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Empty.Location = new System.Drawing.Point(505, 75);
+            this.Empty.Location = new System.Drawing.Point(369, 95);
             this.Empty.Name = "Empty";
             this.Empty.Size = new System.Drawing.Size(75, 32);
             this.Empty.TabIndex = 111;
@@ -387,16 +395,16 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(173, 15);
+            this.label3.Location = new System.Drawing.Point(196, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 19);
+            this.label3.Size = new System.Drawing.Size(57, 19);
             this.label3.TabIndex = 7;
-            this.label3.Text = "圆角度：";
+            this.label3.Text = "曲率:";
             // 
             // refresh
             // 
             this.refresh.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.refresh.Location = new System.Drawing.Point(505, 15);
+            this.refresh.Location = new System.Drawing.Point(288, 95);
             this.refresh.Name = "refresh";
             this.refresh.Size = new System.Drawing.Size(75, 32);
             this.refresh.TabIndex = 110;
@@ -408,7 +416,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(13, 15);
+            this.label1.Location = new System.Drawing.Point(10, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 19);
             this.label1.TabIndex = 5;
@@ -417,7 +425,7 @@
             // TBPenwidth
             // 
             this.TBPenwidth.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TBPenwidth.Location = new System.Drawing.Point(396, 10);
+            this.TBPenwidth.Location = new System.Drawing.Point(393, 10);
             this.TBPenwidth.Name = "TBPenwidth";
             this.TBPenwidth.Size = new System.Drawing.Size(51, 29);
             this.TBPenwidth.TabIndex = 2;
@@ -427,7 +435,7 @@
             // TBRoundRatio
             // 
             this.TBRoundRatio.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TBRoundRatio.Location = new System.Drawing.Point(265, 10);
+            this.TBRoundRatio.Location = new System.Drawing.Point(255, 10);
             this.TBRoundRatio.Name = "TBRoundRatio";
             this.TBRoundRatio.Size = new System.Drawing.Size(51, 29);
             this.TBRoundRatio.TabIndex = 1;
@@ -437,7 +445,7 @@
             // TBGridSize
             // 
             this.TBGridSize.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TBGridSize.Location = new System.Drawing.Point(115, 10);
+            this.TBGridSize.Location = new System.Drawing.Point(107, 10);
             this.TBGridSize.Name = "TBGridSize";
             this.TBGridSize.Size = new System.Drawing.Size(51, 29);
             this.TBGridSize.TabIndex = 0;
@@ -1444,6 +1452,46 @@
             this.textBox01.TabIndex = 0;
             this.textBox01.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnUp
+            // 
+            this.btnUp.Location = new System.Drawing.Point(515, 24);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(24, 24);
+            this.btnUp.TabIndex = 119;
+            this.btnUp.Text = "↑";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnRight
+            // 
+            this.btnRight.Location = new System.Drawing.Point(552, 60);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(24, 24);
+            this.btnRight.TabIndex = 120;
+            this.btnRight.Text = "→";
+            this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            // 
+            // btnLeft
+            // 
+            this.btnLeft.Location = new System.Drawing.Point(478, 60);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(24, 24);
+            this.btnLeft.TabIndex = 121;
+            this.btnLeft.Text = "←";
+            this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(515, 98);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(24, 24);
+            this.btnDown.TabIndex = 122;
+            this.btnDown.Text = "↓";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1451,9 +1499,10 @@
             this.ClientSize = new System.Drawing.Size(1315, 724);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
-            this.Text = "PuzzleWolrd V0.1";
+            this.Text = "PuzzleWolrd V0.2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1584,6 +1633,10 @@
         private System.Windows.Forms.ColorDialog colorDialog3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton RBTNDraw;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.Button btnRight;
+        private System.Windows.Forms.Button btnUp;
     }
 }
 
