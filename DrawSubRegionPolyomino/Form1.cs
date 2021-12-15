@@ -19,7 +19,7 @@ namespace DrawSubRegionPolyomino
         public Form1()
         {
             InitializeComponent();
-            KeyPreview = true;
+            //KeyPreview = true;
             TBGridSize.Text = ConfigurationManager.AppSettings.Get("GridSize");
             TBRoundRatio.Text = ConfigurationManager.AppSettings.Get("RoundRatio");
             TBPenwidth.Text = ConfigurationManager.AppSettings.Get("PenWidth");
@@ -27,6 +27,9 @@ namespace DrawSubRegionPolyomino
             colorDialog1.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("PenColor")));
             colorDialog2.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("BrushColor")));
             colorDialog3.Color = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("FontColor")));
+            tbXCor.Text = ConfigurationManager.AppSettings.Get("XCor");
+            tbYCor.Text = ConfigurationManager.AppSettings.Get("YCor");
+
             string pies = ConfigurationManager.AppSettings.Get("Pieces");
 
             for (int i = 0; i < pieces.GetLength(0); i++)
@@ -40,14 +43,14 @@ namespace DrawSubRegionPolyomino
                 string row = px[x];
                 string[] con = row.Split('|');
                 for (int y = 0; y < con.Length; y++)
-                {                   
+                {
                     string n = (x * 10 + y + 1).ToString();
                     if (n.Length < 2)
                         n = "0" + n;
                     //判断是为TextBox框
                     foreach (Control item in panel1.Controls)
                     {
-                       if (item is TextBox && (item.Name == "textBox" + n))
+                        if (item is TextBox && (item.Name == "textBox" + n))
                         {
                             item.Text = con[y];
                         }
@@ -140,22 +143,14 @@ namespace DrawSubRegionPolyomino
             string[] M = Pieces[x, y].contents.Split(',');
             if (M[0] == "0")
                 return false;
-            return !JudgeULCircle(x,y,pieces);
-            //string[] l = GetLeftGorup(x, y, Pieces).Split(',');
-            //string[] u = GetUpGorup(x, y, Pieces).Split(',');
-            //string[] me = Pieces[x, y].contents.Split(',');
-            //return me[0] != "" && (( l[0]== me[0]&& l[0] == me[0]) || (u[0] == me[0]&& u[1] == me[1]));
+            return !JudgeULCircle(x, y, pieces);
         }
         private bool JudgeURCorner(int x, int y, Piece[,] Pieces)
         {
             string[] M = Pieces[x, y].contents.Split(',');
             if (M[0] == "0")
                 return false;
-            return !JudgeURCircle(x,y,pieces);
-            //string[] r = GetRightGorup(x, y, Pieces).Split(',');
-            //string[] u = GetUpGorup(x, y, Pieces).Split(',');
-            //string[] me = Pieces[x, y].contents.Split(',');
-            //return me[0] != "" && ((r[0] == me[0]&& r[0] == me[0]) || (u[0] == me[0]&& u[1] == me[1]));
+            return !JudgeURCircle(x, y, pieces);
         }
         private bool JudgeDLCorner(int x, int y, Piece[,] Pieces)
         {
@@ -163,10 +158,6 @@ namespace DrawSubRegionPolyomino
             if (M[0] == "0")
                 return false;
             return !JudgeDLCircle(x, y, pieces);
-            //string[] l = GetLeftGorup(x, y, Pieces).Split(',');
-            //string[] d = GetDownGorup(x, y, Pieces).Split(',');
-            //string[] me = Pieces[x, y].contents.Split(',');
-            //return me[0] != "" && ((l[0] == me[0]&& l[1] == me[1]) || (d[0] == me[0]&& d[1] == me[1]));
         }
         private bool JudgeDRCorner(int x, int y, Piece[,] Pieces)
         {
@@ -174,10 +165,6 @@ namespace DrawSubRegionPolyomino
             if (M[0] == "0")
                 return false;
             return !JudgeDRCircle(x, y, pieces);
-            //string[] r = GetRightGorup(x, y, Pieces).Split(',');
-            //string[] d = GetDownGorup(x, y, Pieces).Split(',');
-            //string[] me = Pieces[x, y].contents.Split(',');
-            //return me[0] != "" && ((r[0] == me[0]&& r[1] == me[1]) || (d[0] == me[0]& d[1] == me[1]));
         }
         private bool JudgeCenter(int x, int y, Piece[,] Pieces)
         {
@@ -280,10 +267,6 @@ namespace DrawSubRegionPolyomino
             if (M[0] == "0")
                 return false;
             return true;
-
-            //return GetLeftGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    GetUpGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    Pieces[x, y].contents != "";
         }
         private bool JudgeURCircle(int x, int y, Piece[,] Pieces)
         {
@@ -298,9 +281,6 @@ namespace DrawSubRegionPolyomino
             if (M[0] == "0")
                 return false;
             return true;
-            //return GetRightGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    GetUpGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    Pieces[x, y].contents != "";
         }
         private bool JudgeDLCircle(int x, int y, Piece[,] Pieces)
         {
@@ -315,9 +295,6 @@ namespace DrawSubRegionPolyomino
             if (M[0] == "0")
                 return false;
             return true;
-            //return GetLeftGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    GetDownGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    Pieces[x, y].contents != "";
         }
         private bool JudgeDRCircle(int x, int y, Piece[,] Pieces)
         {
@@ -332,9 +309,6 @@ namespace DrawSubRegionPolyomino
             if (M[0] == "0")
                 return false;
             return true;
-            //return GetDownGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    GetRightGorup(x, y, Pieces) != Pieces[x, y].contents &&
-            //    Pieces[x, y].contents != "";
         }
         private bool JudgeLeftLine(int x, int y, Piece[,] Pieces)
         {
@@ -346,8 +320,8 @@ namespace DrawSubRegionPolyomino
             //对称情况：M不为空，且M与L大小组相等，且U与M ！(大小组相等)
             //总结： U与M ！(大小组相等) 且 （U不为空且UL与U大小组相等||M不为空且M与L大小组相等）
             return !(U[0] == M[0] && U[1] == M[1]) &&
-            ((U[0]!="0"&&UL[0] == U[0] && UL[1] == U[1])|| 
-             (M[0]!="0"&&M[0] == L[0] && M[1] == L[1]));                
+            ((U[0] != "0" && UL[0] == U[0] && UL[1] == U[1]) ||
+             (M[0] != "0" && M[0] == L[0] && M[1] == L[1]));
         }
         private bool JudgeMidLine(int x, int y, Piece[,] Pieces)
         {
@@ -367,7 +341,7 @@ namespace DrawSubRegionPolyomino
             //总结： U与M ！(大小组相等) 且 （U不为空且UR与U大小组相等||M不为空且M与R大小组相等）
             return !(U[0] == M[0] && U[1] == M[1]) &&
             ((U[0] != "0" && UR[0] == U[0] && UR[1] == U[1]) ||
-             (M[0] != "0" && M[0] == R[0] && M[1] ==R[1]));
+             (M[0] != "0" && M[0] == R[0] && M[1] == R[1]));
         }
         private bool JudgeUpLine(int x, int y, Piece[,] Pieces)
         {
@@ -393,7 +367,7 @@ namespace DrawSubRegionPolyomino
         {
             string[] DL = GetDLroup(x, y, Pieces).Split(',');
             string[] D = GetDownGorup(x, y, Pieces).Split(',');
-            string[] L = GetLeftGorup(x, y, Pieces).Split(',');            
+            string[] L = GetLeftGorup(x, y, Pieces).Split(',');
             string[] M = Pieces[x, y].contents.Split(',');
             //          DL不为空，且DL与L大小组相等，且L与M ！(大小组相等)
             //对称情况：M不为空，且M与D大小组相等，且L与M ！(大小组相等)
@@ -462,12 +436,6 @@ namespace DrawSubRegionPolyomino
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.NoPadding | TextFormatFlags.VerticalCenter;
             TextRenderer.DrawText(gp, s, new Font("宋体", Convert.ToInt32(TBFontSize.Text)),
                 new Rectangle(X, Y, g, g), fontColor, flags);
-
-            //Size proposedSize = new Size(int.MaxValue, int.MaxValue);
-            //Font font = new Font("宋体", Convert.ToInt32(TBFontSize.Text));
-            //Size size=TextRenderer.MeasureText(s,font, proposedSize, flags);
-            //gp.DrawString(s, font, new SolidBrush( colorDialog3.Color),
-            //    new PointF(X+(Single)(gridsize/2-size.Width/2), Y + (Single)(gridsize / 2 - size.Height / 2)));
         }
 
         private void DrawPoly(Pen pen, Brush brush, Color fontColor, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
@@ -512,10 +480,10 @@ namespace DrawSubRegionPolyomino
                     if (JudgeDownLine(x, y, Pieces))
                         DrawDownLine(pen, gp, gridsize, X, Y, radius);
                     //画字体
-                    if (RBTNDraw.Checked == true&&"0,0,0"!= Pieces[x, y].contents)
+                    if (RBTNDraw.Checked == true && "0,0,0" != Pieces[x, y].contents)
                     {
                         string[] groupNUm = Pieces[x, y].contents.Split(',');
-                        DrawStr(gp, fontColor, gridsize, X, Y,groupNUm[2]);
+                        DrawStr(gp, fontColor, gridsize, X, Y, groupNUm[2]);
                     }
                 }
         }
@@ -596,6 +564,8 @@ namespace DrawSubRegionPolyomino
             AddUpdateAppSettings("PenColor", colorDialog1.Color.ToArgb().ToString());
             AddUpdateAppSettings("BrushColor", colorDialog2.Color.ToArgb().ToString());
             AddUpdateAppSettings("FontColor", colorDialog3.Color.ToArgb().ToString());
+            AddUpdateAppSettings("XCor", tbXCor.Text);
+            AddUpdateAppSettings("YCor", tbYCor.Text);
             string pies = "";
             for (int i = 0; i < 10; i++)
             {
@@ -605,17 +575,17 @@ namespace DrawSubRegionPolyomino
                     if (n.Length < 2)
                         n = "0" + n;
                     foreach (Control item in panel1.Controls)
-                    {                       
+                    {
                         //判断是为TextBox框
                         if (item is TextBox)
                         {
                             if (item.Name == "textBox" + n)
                             {
-                                pies += item.Text!=""? item.Text:"0，0，0";//0组表示为空。,为小分割
+                                pies += item.Text != "" ? item.Text : "0，0，0";//0组表示为空。,为小分割
                                 if (j < 9)
                                     pies += "|";//|为中分割
                             }
-                            
+
                         }
                     }
                 }
@@ -644,7 +614,7 @@ namespace DrawSubRegionPolyomino
                     foreach (Control item in panel1.Controls)
                     {
                         //判断是为TextBox框
-                        if (item is TextBox&& item.Name == "textBox" + n)
+                        if (item is TextBox && item.Name == "textBox" + n)
                         {
                             Map[i, j] = item.Text;
                         }
@@ -653,15 +623,15 @@ namespace DrawSubRegionPolyomino
             }
             return Map;
         }
-        string [,] MoveMap(string[,] Map,int direction)// 0:上 1:下 2:左 3:右 
+        string[,] MoveMap(string[,] Map, int direction)// 0:上 1:下 2:左 3:右 
         {
             switch (direction)
             {
                 case 0:
-                    for(int col=0;col<10;col++)
+                    for (int col = 0; col < 10; col++)
                     {
                         string temp = Map[0, col];
-                        for (int row=0;row<9;row++)
+                        for (int row = 0; row < 9; row++)
                         {
                             Map[row, col] = Map[row + 1, col];
                         }
@@ -685,7 +655,7 @@ namespace DrawSubRegionPolyomino
                         string temp = Map[row, 0];
                         for (int col = 0; col < 9; col++)
                         {
-                            Map[row, col] = Map[row, col+1];
+                            Map[row, col] = Map[row, col + 1];
                         }
                         Map[row, 9] = temp;
                     }
@@ -696,13 +666,51 @@ namespace DrawSubRegionPolyomino
                         string temp = Map[row, 9];
                         for (int col = 9; col > 0; col--)
                         {
-                            Map[row, col] = Map[row, col-1];
+                            Map[row, col] = Map[row, col - 1];
                         }
                         Map[row, 0] = temp;
                     }
                     break;
             }
             return Map;
+        }
+        int[] RotatePoint(int A, int B, int x, int y, int wise)// 0:顺  1：逆  2:上下  3:左右
+        {
+            if (wise == 0)
+            {
+                int a = (B - y + x) % 10;
+                int b = (x - A + y) % 10;
+                return new int[] { a >= 0 ? a : a + 10, b >= 0 ? b : b + 10 };
+            }
+            if (wise == 1)
+            {
+                int a = (y - B + x) % 10;
+                int b = (A - x + y) % 10;
+                return new int[] { a >= 0 ? a : a + 10, b >= 0 ? b : b + 10 };
+            }
+            if(wise==3)
+            {
+                int b = (2 * y - B)%10;
+                return new int[] { A, b >= 0?b:b + 10 };
+            }
+            if(wise==2)
+            {
+                int a = (2 * x - A) % 10;
+                return new int[] { a >= 0 ? a : a + 10, B };
+            }
+            return new int[] { A, B };
+
+        }
+        string[,] RotateMap(string[,] Map, int wise, int x, int y)// 0:顺时针  1：逆时针
+        {
+            string[,] output = new string[10, 10];
+            for (int i = 0; i < 10; i++)
+                for (int j = 0; j < 10; j++)
+                {
+                    var temp = RotatePoint(i, j, x, y, wise);
+                    output[temp[0], temp[1]] = Map[i, j];
+                }
+            return output;
         }
         void RestoreMap(string[,] map)
         {
@@ -716,7 +724,7 @@ namespace DrawSubRegionPolyomino
                     foreach (Control item in panel1.Controls)
                     {
                         //判断是为TextBox框
-                        if (item is TextBox&& item.Name == "textBox" + n)
+                        if (item is TextBox && item.Name == "textBox" + n)
                         {
                             item.Text = map[i, j];
                         }
@@ -758,14 +766,46 @@ namespace DrawSubRegionPolyomino
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Home)
                 btnUp.PerformClick();
-            if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.End)
                 btnDown.PerformClick();
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Delete)
                 btnLeft.PerformClick();
-            if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.PageDown)
                 btnRight.PerformClick();
+        }
+
+        private void BtnClockwise_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = RotateMap(map, 0, Convert.ToInt32(tbYCor.Text), Convert.ToInt32(tbXCor.Text));
+            RestoreMap(map);
+            Invalidate();
+        }
+
+        private void BtnAntiClockwise_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = RotateMap(map, 1, Convert.ToInt32(tbYCor.Text), Convert.ToInt32(tbXCor.Text));
+            RestoreMap(map);
+            Invalidate();
+        }
+
+        private void BtnUpDown_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = RotateMap(map, 2, Convert.ToInt32(tbYCor.Text), Convert.ToInt32(tbXCor.Text));
+            RestoreMap(map);
+            Invalidate();
+        }
+
+        private void BtnLeftRight_Click(object sender, EventArgs e)
+        {
+            string[,] map = GetMapStrs();
+            map = RotateMap(map, 3, Convert.ToInt32(tbYCor.Text), Convert.ToInt32(tbXCor.Text));
+            RestoreMap(map);
+            Invalidate();
         }
     }
 }

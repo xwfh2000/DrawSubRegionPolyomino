@@ -29,9 +29,27 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.tbYCor = new System.Windows.Forms.TextBox();
+            this.tbXCor = new System.Windows.Forms.TextBox();
+            this.btnClockwise = new System.Windows.Forms.Button();
+            this.btnAntiClockwise = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             this.RBTNDraw = new System.Windows.Forms.RadioButton();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.btnRight = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
             this.TBFontSize = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BTNFontColor = new System.Windows.Forms.Button();
@@ -148,16 +166,46 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.colorDialog3 = new System.Windows.Forms.ColorDialog();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.BtnLeftRight = new System.Windows.Forms.Button();
+            this.BtnUpDown = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label25);
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.label21);
+            this.panel1.Controls.Add(this.label22);
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Controls.Add(this.label24);
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.textBox91);
             this.panel1.Controls.Add(this.textBox92);
@@ -265,8 +313,104 @@
             this.panel1.Size = new System.Drawing.Size(591, 724);
             this.panel1.TabIndex = 0;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 554);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(11, 12);
+            this.label14.TabIndex = 122;
+            this.label14.Text = "9";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(5, 497);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(11, 12);
+            this.label13.TabIndex = 121;
+            this.label13.Text = "8";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(5, 440);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(11, 12);
+            this.label12.TabIndex = 120;
+            this.label12.Text = "7";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(5, 383);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(11, 12);
+            this.label11.TabIndex = 119;
+            this.label11.Text = "6";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(5, 326);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(11, 12);
+            this.label10.TabIndex = 118;
+            this.label10.Text = "5";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 269);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(11, 12);
+            this.label9.TabIndex = 117;
+            this.label9.Text = "4";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 212);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(11, 12);
+            this.label8.TabIndex = 116;
+            this.label8.Text = "3";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(5, 155);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(11, 12);
+            this.label7.TabIndex = 115;
+            this.label7.Text = "2";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(5, 98);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(11, 12);
+            this.label6.TabIndex = 114;
+            this.label6.Text = "1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(5, 41);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(11, 12);
+            this.label5.TabIndex = 113;
+            this.label5.Text = "0";
+            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.BtnUpDown);
+            this.panel2.Controls.Add(this.BtnLeftRight);
+            this.panel2.Controls.Add(this.tbYCor);
+            this.panel2.Controls.Add(this.tbXCor);
+            this.panel2.Controls.Add(this.btnClockwise);
+            this.panel2.Controls.Add(this.btnAntiClockwise);
             this.panel2.Controls.Add(this.btnDown);
             this.panel2.Controls.Add(this.RBTNDraw);
             this.panel2.Controls.Add(this.btnLeft);
@@ -292,16 +436,55 @@
             this.panel2.Size = new System.Drawing.Size(591, 134);
             this.panel2.TabIndex = 112;
             // 
-            // radioButton2
+            // tbYCor
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton2.Location = new System.Drawing.Point(107, 53);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(65, 23);
-            this.radioButton2.TabIndex = 118;
-            this.radioButton2.Text = "不画";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.tbYCor.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbYCor.Location = new System.Drawing.Point(528, 55);
+            this.tbYCor.Name = "tbYCor";
+            this.tbYCor.Size = new System.Drawing.Size(24, 29);
+            this.tbYCor.TabIndex = 126;
+            this.tbYCor.Text = "1";
+            this.tbYCor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbXCor
+            // 
+            this.tbXCor.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbXCor.Location = new System.Drawing.Point(496, 55);
+            this.tbXCor.Name = "tbXCor";
+            this.tbXCor.Size = new System.Drawing.Size(24, 29);
+            this.tbXCor.TabIndex = 125;
+            this.tbXCor.Text = "1";
+            this.tbXCor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnClockwise
+            // 
+            this.btnClockwise.Location = new System.Drawing.Point(538, 27);
+            this.btnClockwise.Name = "btnClockwise";
+            this.btnClockwise.Size = new System.Drawing.Size(24, 24);
+            this.btnClockwise.TabIndex = 124;
+            this.btnClockwise.Text = "↻";
+            this.btnClockwise.UseVisualStyleBackColor = true;
+            this.btnClockwise.Click += new System.EventHandler(this.BtnClockwise_Click);
+            // 
+            // btnAntiClockwise
+            // 
+            this.btnAntiClockwise.Location = new System.Drawing.Point(488, 27);
+            this.btnAntiClockwise.Name = "btnAntiClockwise";
+            this.btnAntiClockwise.Size = new System.Drawing.Size(24, 24);
+            this.btnAntiClockwise.TabIndex = 123;
+            this.btnAntiClockwise.Text = "↺";
+            this.btnAntiClockwise.UseVisualStyleBackColor = true;
+            this.btnAntiClockwise.Click += new System.EventHandler(this.BtnAntiClockwise_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(514, 108);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(24, 24);
+            this.btnDown.TabIndex = 122;
+            this.btnDown.Text = "↓";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // RBTNDraw
             // 
@@ -315,6 +498,47 @@
             this.RBTNDraw.TabStop = true;
             this.RBTNDraw.Text = "画字体";
             this.RBTNDraw.UseVisualStyleBackColor = true;
+            // 
+            // btnLeft
+            // 
+            this.btnLeft.Location = new System.Drawing.Point(460, 60);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(24, 24);
+            this.btnLeft.TabIndex = 121;
+            this.btnLeft.Text = "←";
+            this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radioButton2.Location = new System.Drawing.Point(107, 53);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(65, 23);
+            this.radioButton2.TabIndex = 118;
+            this.radioButton2.Text = "不画";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // btnRight
+            // 
+            this.btnRight.Location = new System.Drawing.Point(561, 60);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(24, 24);
+            this.btnRight.TabIndex = 120;
+            this.btnRight.Text = "→";
+            this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.Location = new System.Drawing.Point(514, 5);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(24, 24);
+            this.btnUp.TabIndex = 119;
+            this.btnUp.Text = "↑";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // TBFontSize
             // 
@@ -455,7 +679,7 @@
             // textBox91
             // 
             this.textBox91.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox91.Location = new System.Drawing.Point(13, 525);
+            this.textBox91.Location = new System.Drawing.Point(20, 533);
             this.textBox91.Multiline = true;
             this.textBox91.Name = "textBox91";
             this.textBox91.Size = new System.Drawing.Size(54, 54);
@@ -465,7 +689,7 @@
             // textBox92
             // 
             this.textBox92.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox92.Location = new System.Drawing.Point(70, 525);
+            this.textBox92.Location = new System.Drawing.Point(77, 533);
             this.textBox92.Multiline = true;
             this.textBox92.Name = "textBox92";
             this.textBox92.Size = new System.Drawing.Size(54, 54);
@@ -475,7 +699,7 @@
             // textBox93
             // 
             this.textBox93.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox93.Location = new System.Drawing.Point(127, 525);
+            this.textBox93.Location = new System.Drawing.Point(134, 533);
             this.textBox93.Multiline = true;
             this.textBox93.Name = "textBox93";
             this.textBox93.Size = new System.Drawing.Size(54, 54);
@@ -485,7 +709,7 @@
             // textBox94
             // 
             this.textBox94.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox94.Location = new System.Drawing.Point(184, 525);
+            this.textBox94.Location = new System.Drawing.Point(191, 533);
             this.textBox94.Multiline = true;
             this.textBox94.Name = "textBox94";
             this.textBox94.Size = new System.Drawing.Size(54, 54);
@@ -495,7 +719,7 @@
             // textBox95
             // 
             this.textBox95.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox95.Location = new System.Drawing.Point(241, 525);
+            this.textBox95.Location = new System.Drawing.Point(248, 533);
             this.textBox95.Multiline = true;
             this.textBox95.Name = "textBox95";
             this.textBox95.Size = new System.Drawing.Size(54, 54);
@@ -505,7 +729,7 @@
             // textBox96
             // 
             this.textBox96.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox96.Location = new System.Drawing.Point(298, 525);
+            this.textBox96.Location = new System.Drawing.Point(305, 533);
             this.textBox96.Multiline = true;
             this.textBox96.Name = "textBox96";
             this.textBox96.Size = new System.Drawing.Size(54, 54);
@@ -515,7 +739,7 @@
             // textBox97
             // 
             this.textBox97.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox97.Location = new System.Drawing.Point(355, 525);
+            this.textBox97.Location = new System.Drawing.Point(362, 533);
             this.textBox97.Multiline = true;
             this.textBox97.Name = "textBox97";
             this.textBox97.Size = new System.Drawing.Size(54, 54);
@@ -525,7 +749,7 @@
             // textBox98
             // 
             this.textBox98.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox98.Location = new System.Drawing.Point(412, 525);
+            this.textBox98.Location = new System.Drawing.Point(419, 533);
             this.textBox98.Multiline = true;
             this.textBox98.Name = "textBox98";
             this.textBox98.Size = new System.Drawing.Size(54, 54);
@@ -535,7 +759,7 @@
             // textBox99
             // 
             this.textBox99.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox99.Location = new System.Drawing.Point(469, 525);
+            this.textBox99.Location = new System.Drawing.Point(476, 533);
             this.textBox99.Multiline = true;
             this.textBox99.Name = "textBox99";
             this.textBox99.Size = new System.Drawing.Size(54, 54);
@@ -545,7 +769,7 @@
             // textBox100
             // 
             this.textBox100.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox100.Location = new System.Drawing.Point(526, 525);
+            this.textBox100.Location = new System.Drawing.Point(533, 533);
             this.textBox100.Multiline = true;
             this.textBox100.Name = "textBox100";
             this.textBox100.Size = new System.Drawing.Size(54, 54);
@@ -555,7 +779,7 @@
             // textBox81
             // 
             this.textBox81.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox81.Location = new System.Drawing.Point(13, 468);
+            this.textBox81.Location = new System.Drawing.Point(20, 476);
             this.textBox81.Multiline = true;
             this.textBox81.Name = "textBox81";
             this.textBox81.Size = new System.Drawing.Size(54, 54);
@@ -565,7 +789,7 @@
             // textBox82
             // 
             this.textBox82.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox82.Location = new System.Drawing.Point(70, 468);
+            this.textBox82.Location = new System.Drawing.Point(77, 476);
             this.textBox82.Multiline = true;
             this.textBox82.Name = "textBox82";
             this.textBox82.Size = new System.Drawing.Size(54, 54);
@@ -575,7 +799,7 @@
             // textBox83
             // 
             this.textBox83.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox83.Location = new System.Drawing.Point(127, 468);
+            this.textBox83.Location = new System.Drawing.Point(134, 476);
             this.textBox83.Multiline = true;
             this.textBox83.Name = "textBox83";
             this.textBox83.Size = new System.Drawing.Size(54, 54);
@@ -585,7 +809,7 @@
             // textBox84
             // 
             this.textBox84.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox84.Location = new System.Drawing.Point(184, 468);
+            this.textBox84.Location = new System.Drawing.Point(191, 476);
             this.textBox84.Multiline = true;
             this.textBox84.Name = "textBox84";
             this.textBox84.Size = new System.Drawing.Size(54, 54);
@@ -595,7 +819,7 @@
             // textBox85
             // 
             this.textBox85.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox85.Location = new System.Drawing.Point(241, 468);
+            this.textBox85.Location = new System.Drawing.Point(248, 476);
             this.textBox85.Multiline = true;
             this.textBox85.Name = "textBox85";
             this.textBox85.Size = new System.Drawing.Size(54, 54);
@@ -605,7 +829,7 @@
             // textBox86
             // 
             this.textBox86.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox86.Location = new System.Drawing.Point(298, 468);
+            this.textBox86.Location = new System.Drawing.Point(305, 476);
             this.textBox86.Multiline = true;
             this.textBox86.Name = "textBox86";
             this.textBox86.Size = new System.Drawing.Size(54, 54);
@@ -615,7 +839,7 @@
             // textBox87
             // 
             this.textBox87.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox87.Location = new System.Drawing.Point(355, 468);
+            this.textBox87.Location = new System.Drawing.Point(362, 476);
             this.textBox87.Multiline = true;
             this.textBox87.Name = "textBox87";
             this.textBox87.Size = new System.Drawing.Size(54, 54);
@@ -625,7 +849,7 @@
             // textBox88
             // 
             this.textBox88.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox88.Location = new System.Drawing.Point(412, 468);
+            this.textBox88.Location = new System.Drawing.Point(419, 476);
             this.textBox88.Multiline = true;
             this.textBox88.Name = "textBox88";
             this.textBox88.Size = new System.Drawing.Size(54, 54);
@@ -635,7 +859,7 @@
             // textBox89
             // 
             this.textBox89.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox89.Location = new System.Drawing.Point(469, 468);
+            this.textBox89.Location = new System.Drawing.Point(476, 476);
             this.textBox89.Multiline = true;
             this.textBox89.Name = "textBox89";
             this.textBox89.Size = new System.Drawing.Size(54, 54);
@@ -645,7 +869,7 @@
             // textBox90
             // 
             this.textBox90.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox90.Location = new System.Drawing.Point(526, 468);
+            this.textBox90.Location = new System.Drawing.Point(533, 476);
             this.textBox90.Multiline = true;
             this.textBox90.Name = "textBox90";
             this.textBox90.Size = new System.Drawing.Size(54, 54);
@@ -655,7 +879,7 @@
             // textBox71
             // 
             this.textBox71.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox71.Location = new System.Drawing.Point(13, 411);
+            this.textBox71.Location = new System.Drawing.Point(20, 419);
             this.textBox71.Multiline = true;
             this.textBox71.Name = "textBox71";
             this.textBox71.Size = new System.Drawing.Size(54, 54);
@@ -665,7 +889,7 @@
             // textBox72
             // 
             this.textBox72.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox72.Location = new System.Drawing.Point(70, 411);
+            this.textBox72.Location = new System.Drawing.Point(77, 419);
             this.textBox72.Multiline = true;
             this.textBox72.Name = "textBox72";
             this.textBox72.Size = new System.Drawing.Size(54, 54);
@@ -675,7 +899,7 @@
             // textBox73
             // 
             this.textBox73.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox73.Location = new System.Drawing.Point(127, 411);
+            this.textBox73.Location = new System.Drawing.Point(134, 419);
             this.textBox73.Multiline = true;
             this.textBox73.Name = "textBox73";
             this.textBox73.Size = new System.Drawing.Size(54, 54);
@@ -685,7 +909,7 @@
             // textBox74
             // 
             this.textBox74.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox74.Location = new System.Drawing.Point(184, 411);
+            this.textBox74.Location = new System.Drawing.Point(191, 419);
             this.textBox74.Multiline = true;
             this.textBox74.Name = "textBox74";
             this.textBox74.Size = new System.Drawing.Size(54, 54);
@@ -695,7 +919,7 @@
             // textBox75
             // 
             this.textBox75.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox75.Location = new System.Drawing.Point(241, 411);
+            this.textBox75.Location = new System.Drawing.Point(248, 419);
             this.textBox75.Multiline = true;
             this.textBox75.Name = "textBox75";
             this.textBox75.Size = new System.Drawing.Size(54, 54);
@@ -705,7 +929,7 @@
             // textBox76
             // 
             this.textBox76.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox76.Location = new System.Drawing.Point(298, 411);
+            this.textBox76.Location = new System.Drawing.Point(305, 419);
             this.textBox76.Multiline = true;
             this.textBox76.Name = "textBox76";
             this.textBox76.Size = new System.Drawing.Size(54, 54);
@@ -715,7 +939,7 @@
             // textBox77
             // 
             this.textBox77.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox77.Location = new System.Drawing.Point(355, 411);
+            this.textBox77.Location = new System.Drawing.Point(362, 419);
             this.textBox77.Multiline = true;
             this.textBox77.Name = "textBox77";
             this.textBox77.Size = new System.Drawing.Size(54, 54);
@@ -725,7 +949,7 @@
             // textBox78
             // 
             this.textBox78.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox78.Location = new System.Drawing.Point(412, 411);
+            this.textBox78.Location = new System.Drawing.Point(419, 419);
             this.textBox78.Multiline = true;
             this.textBox78.Name = "textBox78";
             this.textBox78.Size = new System.Drawing.Size(54, 54);
@@ -735,7 +959,7 @@
             // textBox79
             // 
             this.textBox79.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox79.Location = new System.Drawing.Point(469, 411);
+            this.textBox79.Location = new System.Drawing.Point(476, 419);
             this.textBox79.Multiline = true;
             this.textBox79.Name = "textBox79";
             this.textBox79.Size = new System.Drawing.Size(54, 54);
@@ -745,7 +969,7 @@
             // textBox80
             // 
             this.textBox80.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox80.Location = new System.Drawing.Point(526, 411);
+            this.textBox80.Location = new System.Drawing.Point(533, 419);
             this.textBox80.Multiline = true;
             this.textBox80.Name = "textBox80";
             this.textBox80.Size = new System.Drawing.Size(54, 54);
@@ -755,7 +979,7 @@
             // textBox41
             // 
             this.textBox41.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox41.Location = new System.Drawing.Point(13, 240);
+            this.textBox41.Location = new System.Drawing.Point(20, 248);
             this.textBox41.Multiline = true;
             this.textBox41.Name = "textBox41";
             this.textBox41.Size = new System.Drawing.Size(54, 54);
@@ -765,7 +989,7 @@
             // textBox42
             // 
             this.textBox42.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox42.Location = new System.Drawing.Point(70, 240);
+            this.textBox42.Location = new System.Drawing.Point(77, 248);
             this.textBox42.Multiline = true;
             this.textBox42.Name = "textBox42";
             this.textBox42.Size = new System.Drawing.Size(54, 54);
@@ -775,7 +999,7 @@
             // textBox43
             // 
             this.textBox43.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox43.Location = new System.Drawing.Point(127, 240);
+            this.textBox43.Location = new System.Drawing.Point(134, 248);
             this.textBox43.Multiline = true;
             this.textBox43.Name = "textBox43";
             this.textBox43.Size = new System.Drawing.Size(54, 54);
@@ -785,7 +1009,7 @@
             // textBox44
             // 
             this.textBox44.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox44.Location = new System.Drawing.Point(184, 240);
+            this.textBox44.Location = new System.Drawing.Point(191, 248);
             this.textBox44.Multiline = true;
             this.textBox44.Name = "textBox44";
             this.textBox44.Size = new System.Drawing.Size(54, 54);
@@ -795,7 +1019,7 @@
             // textBox45
             // 
             this.textBox45.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox45.Location = new System.Drawing.Point(241, 240);
+            this.textBox45.Location = new System.Drawing.Point(248, 248);
             this.textBox45.Multiline = true;
             this.textBox45.Name = "textBox45";
             this.textBox45.Size = new System.Drawing.Size(54, 54);
@@ -805,7 +1029,7 @@
             // textBox46
             // 
             this.textBox46.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox46.Location = new System.Drawing.Point(298, 240);
+            this.textBox46.Location = new System.Drawing.Point(305, 248);
             this.textBox46.Multiline = true;
             this.textBox46.Name = "textBox46";
             this.textBox46.Size = new System.Drawing.Size(54, 54);
@@ -815,7 +1039,7 @@
             // textBox47
             // 
             this.textBox47.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox47.Location = new System.Drawing.Point(355, 240);
+            this.textBox47.Location = new System.Drawing.Point(362, 248);
             this.textBox47.Multiline = true;
             this.textBox47.Name = "textBox47";
             this.textBox47.Size = new System.Drawing.Size(54, 54);
@@ -825,7 +1049,7 @@
             // textBox48
             // 
             this.textBox48.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox48.Location = new System.Drawing.Point(412, 240);
+            this.textBox48.Location = new System.Drawing.Point(419, 248);
             this.textBox48.Multiline = true;
             this.textBox48.Name = "textBox48";
             this.textBox48.Size = new System.Drawing.Size(54, 54);
@@ -835,7 +1059,7 @@
             // textBox49
             // 
             this.textBox49.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox49.Location = new System.Drawing.Point(469, 240);
+            this.textBox49.Location = new System.Drawing.Point(476, 248);
             this.textBox49.Multiline = true;
             this.textBox49.Name = "textBox49";
             this.textBox49.Size = new System.Drawing.Size(54, 54);
@@ -845,7 +1069,7 @@
             // textBox50
             // 
             this.textBox50.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox50.Location = new System.Drawing.Point(526, 240);
+            this.textBox50.Location = new System.Drawing.Point(533, 248);
             this.textBox50.Multiline = true;
             this.textBox50.Name = "textBox50";
             this.textBox50.Size = new System.Drawing.Size(54, 54);
@@ -855,7 +1079,7 @@
             // textBox51
             // 
             this.textBox51.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox51.Location = new System.Drawing.Point(13, 297);
+            this.textBox51.Location = new System.Drawing.Point(20, 305);
             this.textBox51.Multiline = true;
             this.textBox51.Name = "textBox51";
             this.textBox51.Size = new System.Drawing.Size(54, 54);
@@ -865,7 +1089,7 @@
             // textBox52
             // 
             this.textBox52.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox52.Location = new System.Drawing.Point(70, 297);
+            this.textBox52.Location = new System.Drawing.Point(77, 305);
             this.textBox52.Multiline = true;
             this.textBox52.Name = "textBox52";
             this.textBox52.Size = new System.Drawing.Size(54, 54);
@@ -875,7 +1099,7 @@
             // textBox53
             // 
             this.textBox53.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox53.Location = new System.Drawing.Point(127, 297);
+            this.textBox53.Location = new System.Drawing.Point(134, 305);
             this.textBox53.Multiline = true;
             this.textBox53.Name = "textBox53";
             this.textBox53.Size = new System.Drawing.Size(54, 54);
@@ -885,7 +1109,7 @@
             // textBox54
             // 
             this.textBox54.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox54.Location = new System.Drawing.Point(184, 297);
+            this.textBox54.Location = new System.Drawing.Point(191, 305);
             this.textBox54.Multiline = true;
             this.textBox54.Name = "textBox54";
             this.textBox54.Size = new System.Drawing.Size(54, 54);
@@ -895,7 +1119,7 @@
             // textBox55
             // 
             this.textBox55.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox55.Location = new System.Drawing.Point(241, 297);
+            this.textBox55.Location = new System.Drawing.Point(248, 305);
             this.textBox55.Multiline = true;
             this.textBox55.Name = "textBox55";
             this.textBox55.Size = new System.Drawing.Size(54, 54);
@@ -905,7 +1129,7 @@
             // textBox56
             // 
             this.textBox56.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox56.Location = new System.Drawing.Point(298, 297);
+            this.textBox56.Location = new System.Drawing.Point(305, 305);
             this.textBox56.Multiline = true;
             this.textBox56.Name = "textBox56";
             this.textBox56.Size = new System.Drawing.Size(54, 54);
@@ -915,7 +1139,7 @@
             // textBox57
             // 
             this.textBox57.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox57.Location = new System.Drawing.Point(355, 297);
+            this.textBox57.Location = new System.Drawing.Point(362, 305);
             this.textBox57.Multiline = true;
             this.textBox57.Name = "textBox57";
             this.textBox57.Size = new System.Drawing.Size(54, 54);
@@ -925,7 +1149,7 @@
             // textBox58
             // 
             this.textBox58.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox58.Location = new System.Drawing.Point(412, 297);
+            this.textBox58.Location = new System.Drawing.Point(419, 305);
             this.textBox58.Multiline = true;
             this.textBox58.Name = "textBox58";
             this.textBox58.Size = new System.Drawing.Size(54, 54);
@@ -935,7 +1159,7 @@
             // textBox59
             // 
             this.textBox59.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox59.Location = new System.Drawing.Point(469, 297);
+            this.textBox59.Location = new System.Drawing.Point(476, 305);
             this.textBox59.Multiline = true;
             this.textBox59.Name = "textBox59";
             this.textBox59.Size = new System.Drawing.Size(54, 54);
@@ -945,7 +1169,7 @@
             // textBox60
             // 
             this.textBox60.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox60.Location = new System.Drawing.Point(526, 297);
+            this.textBox60.Location = new System.Drawing.Point(533, 305);
             this.textBox60.Multiline = true;
             this.textBox60.Name = "textBox60";
             this.textBox60.Size = new System.Drawing.Size(54, 54);
@@ -955,7 +1179,7 @@
             // textBox61
             // 
             this.textBox61.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox61.Location = new System.Drawing.Point(13, 354);
+            this.textBox61.Location = new System.Drawing.Point(20, 362);
             this.textBox61.Multiline = true;
             this.textBox61.Name = "textBox61";
             this.textBox61.Size = new System.Drawing.Size(54, 54);
@@ -965,7 +1189,7 @@
             // textBox62
             // 
             this.textBox62.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox62.Location = new System.Drawing.Point(70, 354);
+            this.textBox62.Location = new System.Drawing.Point(77, 362);
             this.textBox62.Multiline = true;
             this.textBox62.Name = "textBox62";
             this.textBox62.Size = new System.Drawing.Size(54, 54);
@@ -975,7 +1199,7 @@
             // textBox63
             // 
             this.textBox63.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox63.Location = new System.Drawing.Point(127, 354);
+            this.textBox63.Location = new System.Drawing.Point(134, 362);
             this.textBox63.Multiline = true;
             this.textBox63.Name = "textBox63";
             this.textBox63.Size = new System.Drawing.Size(54, 54);
@@ -985,7 +1209,7 @@
             // textBox64
             // 
             this.textBox64.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox64.Location = new System.Drawing.Point(184, 354);
+            this.textBox64.Location = new System.Drawing.Point(191, 362);
             this.textBox64.Multiline = true;
             this.textBox64.Name = "textBox64";
             this.textBox64.Size = new System.Drawing.Size(54, 54);
@@ -995,7 +1219,7 @@
             // textBox65
             // 
             this.textBox65.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox65.Location = new System.Drawing.Point(241, 354);
+            this.textBox65.Location = new System.Drawing.Point(248, 362);
             this.textBox65.Multiline = true;
             this.textBox65.Name = "textBox65";
             this.textBox65.Size = new System.Drawing.Size(54, 54);
@@ -1005,7 +1229,7 @@
             // textBox66
             // 
             this.textBox66.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox66.Location = new System.Drawing.Point(298, 354);
+            this.textBox66.Location = new System.Drawing.Point(305, 362);
             this.textBox66.Multiline = true;
             this.textBox66.Name = "textBox66";
             this.textBox66.Size = new System.Drawing.Size(54, 54);
@@ -1015,7 +1239,7 @@
             // textBox67
             // 
             this.textBox67.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox67.Location = new System.Drawing.Point(355, 354);
+            this.textBox67.Location = new System.Drawing.Point(362, 362);
             this.textBox67.Multiline = true;
             this.textBox67.Name = "textBox67";
             this.textBox67.Size = new System.Drawing.Size(54, 54);
@@ -1025,7 +1249,7 @@
             // textBox68
             // 
             this.textBox68.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox68.Location = new System.Drawing.Point(412, 354);
+            this.textBox68.Location = new System.Drawing.Point(419, 362);
             this.textBox68.Multiline = true;
             this.textBox68.Name = "textBox68";
             this.textBox68.Size = new System.Drawing.Size(54, 54);
@@ -1035,7 +1259,7 @@
             // textBox69
             // 
             this.textBox69.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox69.Location = new System.Drawing.Point(469, 354);
+            this.textBox69.Location = new System.Drawing.Point(476, 362);
             this.textBox69.Multiline = true;
             this.textBox69.Name = "textBox69";
             this.textBox69.Size = new System.Drawing.Size(54, 54);
@@ -1045,7 +1269,7 @@
             // textBox70
             // 
             this.textBox70.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox70.Location = new System.Drawing.Point(526, 354);
+            this.textBox70.Location = new System.Drawing.Point(533, 362);
             this.textBox70.Multiline = true;
             this.textBox70.Name = "textBox70";
             this.textBox70.Size = new System.Drawing.Size(54, 54);
@@ -1055,7 +1279,7 @@
             // textBox21
             // 
             this.textBox21.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox21.Location = new System.Drawing.Point(13, 126);
+            this.textBox21.Location = new System.Drawing.Point(20, 134);
             this.textBox21.Multiline = true;
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new System.Drawing.Size(54, 54);
@@ -1065,7 +1289,7 @@
             // textBox22
             // 
             this.textBox22.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox22.Location = new System.Drawing.Point(70, 126);
+            this.textBox22.Location = new System.Drawing.Point(77, 134);
             this.textBox22.Multiline = true;
             this.textBox22.Name = "textBox22";
             this.textBox22.Size = new System.Drawing.Size(54, 54);
@@ -1075,7 +1299,7 @@
             // textBox23
             // 
             this.textBox23.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox23.Location = new System.Drawing.Point(127, 126);
+            this.textBox23.Location = new System.Drawing.Point(134, 134);
             this.textBox23.Multiline = true;
             this.textBox23.Name = "textBox23";
             this.textBox23.Size = new System.Drawing.Size(54, 54);
@@ -1085,7 +1309,7 @@
             // textBox24
             // 
             this.textBox24.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox24.Location = new System.Drawing.Point(184, 126);
+            this.textBox24.Location = new System.Drawing.Point(191, 134);
             this.textBox24.Multiline = true;
             this.textBox24.Name = "textBox24";
             this.textBox24.Size = new System.Drawing.Size(54, 54);
@@ -1095,7 +1319,7 @@
             // textBox25
             // 
             this.textBox25.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox25.Location = new System.Drawing.Point(241, 126);
+            this.textBox25.Location = new System.Drawing.Point(248, 134);
             this.textBox25.Multiline = true;
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new System.Drawing.Size(54, 54);
@@ -1105,7 +1329,7 @@
             // textBox26
             // 
             this.textBox26.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox26.Location = new System.Drawing.Point(298, 126);
+            this.textBox26.Location = new System.Drawing.Point(305, 134);
             this.textBox26.Multiline = true;
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new System.Drawing.Size(54, 54);
@@ -1115,7 +1339,7 @@
             // textBox27
             // 
             this.textBox27.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox27.Location = new System.Drawing.Point(355, 126);
+            this.textBox27.Location = new System.Drawing.Point(362, 134);
             this.textBox27.Multiline = true;
             this.textBox27.Name = "textBox27";
             this.textBox27.Size = new System.Drawing.Size(54, 54);
@@ -1125,7 +1349,7 @@
             // textBox28
             // 
             this.textBox28.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox28.Location = new System.Drawing.Point(412, 126);
+            this.textBox28.Location = new System.Drawing.Point(419, 134);
             this.textBox28.Multiline = true;
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(54, 54);
@@ -1135,7 +1359,7 @@
             // textBox29
             // 
             this.textBox29.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox29.Location = new System.Drawing.Point(469, 126);
+            this.textBox29.Location = new System.Drawing.Point(476, 134);
             this.textBox29.Multiline = true;
             this.textBox29.Name = "textBox29";
             this.textBox29.Size = new System.Drawing.Size(54, 54);
@@ -1145,7 +1369,7 @@
             // textBox30
             // 
             this.textBox30.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox30.Location = new System.Drawing.Point(526, 126);
+            this.textBox30.Location = new System.Drawing.Point(533, 134);
             this.textBox30.Multiline = true;
             this.textBox30.Name = "textBox30";
             this.textBox30.Size = new System.Drawing.Size(54, 54);
@@ -1155,7 +1379,7 @@
             // textBox31
             // 
             this.textBox31.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox31.Location = new System.Drawing.Point(13, 183);
+            this.textBox31.Location = new System.Drawing.Point(20, 191);
             this.textBox31.Multiline = true;
             this.textBox31.Name = "textBox31";
             this.textBox31.Size = new System.Drawing.Size(54, 54);
@@ -1165,7 +1389,7 @@
             // textBox32
             // 
             this.textBox32.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox32.Location = new System.Drawing.Point(70, 183);
+            this.textBox32.Location = new System.Drawing.Point(77, 191);
             this.textBox32.Multiline = true;
             this.textBox32.Name = "textBox32";
             this.textBox32.Size = new System.Drawing.Size(54, 54);
@@ -1175,7 +1399,7 @@
             // textBox33
             // 
             this.textBox33.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox33.Location = new System.Drawing.Point(127, 183);
+            this.textBox33.Location = new System.Drawing.Point(134, 191);
             this.textBox33.Multiline = true;
             this.textBox33.Name = "textBox33";
             this.textBox33.Size = new System.Drawing.Size(54, 54);
@@ -1185,7 +1409,7 @@
             // textBox34
             // 
             this.textBox34.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox34.Location = new System.Drawing.Point(184, 183);
+            this.textBox34.Location = new System.Drawing.Point(191, 191);
             this.textBox34.Multiline = true;
             this.textBox34.Name = "textBox34";
             this.textBox34.Size = new System.Drawing.Size(54, 54);
@@ -1195,7 +1419,7 @@
             // textBox35
             // 
             this.textBox35.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox35.Location = new System.Drawing.Point(241, 183);
+            this.textBox35.Location = new System.Drawing.Point(248, 191);
             this.textBox35.Multiline = true;
             this.textBox35.Name = "textBox35";
             this.textBox35.Size = new System.Drawing.Size(54, 54);
@@ -1205,7 +1429,7 @@
             // textBox36
             // 
             this.textBox36.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox36.Location = new System.Drawing.Point(298, 183);
+            this.textBox36.Location = new System.Drawing.Point(305, 191);
             this.textBox36.Multiline = true;
             this.textBox36.Name = "textBox36";
             this.textBox36.Size = new System.Drawing.Size(54, 54);
@@ -1215,7 +1439,7 @@
             // textBox37
             // 
             this.textBox37.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox37.Location = new System.Drawing.Point(355, 183);
+            this.textBox37.Location = new System.Drawing.Point(362, 191);
             this.textBox37.Multiline = true;
             this.textBox37.Name = "textBox37";
             this.textBox37.Size = new System.Drawing.Size(54, 54);
@@ -1225,7 +1449,7 @@
             // textBox38
             // 
             this.textBox38.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox38.Location = new System.Drawing.Point(412, 183);
+            this.textBox38.Location = new System.Drawing.Point(419, 191);
             this.textBox38.Multiline = true;
             this.textBox38.Name = "textBox38";
             this.textBox38.Size = new System.Drawing.Size(54, 54);
@@ -1235,7 +1459,7 @@
             // textBox39
             // 
             this.textBox39.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox39.Location = new System.Drawing.Point(469, 183);
+            this.textBox39.Location = new System.Drawing.Point(476, 191);
             this.textBox39.Multiline = true;
             this.textBox39.Name = "textBox39";
             this.textBox39.Size = new System.Drawing.Size(54, 54);
@@ -1245,7 +1469,7 @@
             // textBox40
             // 
             this.textBox40.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox40.Location = new System.Drawing.Point(526, 183);
+            this.textBox40.Location = new System.Drawing.Point(533, 191);
             this.textBox40.Multiline = true;
             this.textBox40.Name = "textBox40";
             this.textBox40.Size = new System.Drawing.Size(54, 54);
@@ -1255,7 +1479,7 @@
             // textBox11
             // 
             this.textBox11.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox11.Location = new System.Drawing.Point(13, 69);
+            this.textBox11.Location = new System.Drawing.Point(20, 77);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(54, 54);
@@ -1265,7 +1489,7 @@
             // textBox12
             // 
             this.textBox12.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox12.Location = new System.Drawing.Point(70, 69);
+            this.textBox12.Location = new System.Drawing.Point(77, 77);
             this.textBox12.Multiline = true;
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(54, 54);
@@ -1275,7 +1499,7 @@
             // textBox13
             // 
             this.textBox13.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox13.Location = new System.Drawing.Point(127, 69);
+            this.textBox13.Location = new System.Drawing.Point(134, 77);
             this.textBox13.Multiline = true;
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(54, 54);
@@ -1285,7 +1509,7 @@
             // textBox14
             // 
             this.textBox14.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox14.Location = new System.Drawing.Point(184, 69);
+            this.textBox14.Location = new System.Drawing.Point(191, 77);
             this.textBox14.Multiline = true;
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(54, 54);
@@ -1295,7 +1519,7 @@
             // textBox15
             // 
             this.textBox15.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox15.Location = new System.Drawing.Point(241, 69);
+            this.textBox15.Location = new System.Drawing.Point(248, 77);
             this.textBox15.Multiline = true;
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(54, 54);
@@ -1305,7 +1529,7 @@
             // textBox16
             // 
             this.textBox16.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox16.Location = new System.Drawing.Point(298, 69);
+            this.textBox16.Location = new System.Drawing.Point(305, 77);
             this.textBox16.Multiline = true;
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(54, 54);
@@ -1315,7 +1539,7 @@
             // textBox17
             // 
             this.textBox17.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox17.Location = new System.Drawing.Point(355, 69);
+            this.textBox17.Location = new System.Drawing.Point(362, 77);
             this.textBox17.Multiline = true;
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(54, 54);
@@ -1325,7 +1549,7 @@
             // textBox18
             // 
             this.textBox18.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox18.Location = new System.Drawing.Point(412, 69);
+            this.textBox18.Location = new System.Drawing.Point(419, 77);
             this.textBox18.Multiline = true;
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(54, 54);
@@ -1335,7 +1559,7 @@
             // textBox19
             // 
             this.textBox19.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox19.Location = new System.Drawing.Point(469, 69);
+            this.textBox19.Location = new System.Drawing.Point(476, 77);
             this.textBox19.Multiline = true;
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(54, 54);
@@ -1345,7 +1569,7 @@
             // textBox20
             // 
             this.textBox20.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox20.Location = new System.Drawing.Point(526, 69);
+            this.textBox20.Location = new System.Drawing.Point(533, 77);
             this.textBox20.Multiline = true;
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(54, 54);
@@ -1355,7 +1579,7 @@
             // textBox10
             // 
             this.textBox10.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox10.Location = new System.Drawing.Point(526, 12);
+            this.textBox10.Location = new System.Drawing.Point(533, 20);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(54, 54);
@@ -1365,7 +1589,7 @@
             // textBox09
             // 
             this.textBox09.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox09.Location = new System.Drawing.Point(469, 12);
+            this.textBox09.Location = new System.Drawing.Point(476, 20);
             this.textBox09.Multiline = true;
             this.textBox09.Name = "textBox09";
             this.textBox09.Size = new System.Drawing.Size(54, 54);
@@ -1375,7 +1599,7 @@
             // textBox08
             // 
             this.textBox08.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox08.Location = new System.Drawing.Point(412, 12);
+            this.textBox08.Location = new System.Drawing.Point(419, 20);
             this.textBox08.Multiline = true;
             this.textBox08.Name = "textBox08";
             this.textBox08.Size = new System.Drawing.Size(54, 54);
@@ -1385,7 +1609,7 @@
             // textBox07
             // 
             this.textBox07.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox07.Location = new System.Drawing.Point(355, 12);
+            this.textBox07.Location = new System.Drawing.Point(362, 20);
             this.textBox07.Multiline = true;
             this.textBox07.Name = "textBox07";
             this.textBox07.Size = new System.Drawing.Size(54, 54);
@@ -1395,7 +1619,7 @@
             // textBox06
             // 
             this.textBox06.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox06.Location = new System.Drawing.Point(298, 12);
+            this.textBox06.Location = new System.Drawing.Point(305, 20);
             this.textBox06.Multiline = true;
             this.textBox06.Name = "textBox06";
             this.textBox06.Size = new System.Drawing.Size(54, 54);
@@ -1405,7 +1629,7 @@
             // textBox05
             // 
             this.textBox05.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox05.Location = new System.Drawing.Point(241, 12);
+            this.textBox05.Location = new System.Drawing.Point(248, 20);
             this.textBox05.Multiline = true;
             this.textBox05.Name = "textBox05";
             this.textBox05.Size = new System.Drawing.Size(54, 54);
@@ -1415,7 +1639,7 @@
             // textBox04
             // 
             this.textBox04.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox04.Location = new System.Drawing.Point(184, 12);
+            this.textBox04.Location = new System.Drawing.Point(191, 20);
             this.textBox04.Multiline = true;
             this.textBox04.Name = "textBox04";
             this.textBox04.Size = new System.Drawing.Size(54, 54);
@@ -1425,7 +1649,7 @@
             // textBox03
             // 
             this.textBox03.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox03.Location = new System.Drawing.Point(127, 12);
+            this.textBox03.Location = new System.Drawing.Point(134, 20);
             this.textBox03.Multiline = true;
             this.textBox03.Name = "textBox03";
             this.textBox03.Size = new System.Drawing.Size(54, 54);
@@ -1435,7 +1659,7 @@
             // textBox02
             // 
             this.textBox02.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox02.Location = new System.Drawing.Point(70, 12);
+            this.textBox02.Location = new System.Drawing.Point(77, 20);
             this.textBox02.Multiline = true;
             this.textBox02.Name = "textBox02";
             this.textBox02.Size = new System.Drawing.Size(54, 54);
@@ -1445,52 +1669,131 @@
             // textBox01
             // 
             this.textBox01.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox01.Location = new System.Drawing.Point(13, 12);
+            this.textBox01.Location = new System.Drawing.Point(20, 20);
             this.textBox01.Multiline = true;
             this.textBox01.Name = "textBox01";
             this.textBox01.Size = new System.Drawing.Size(54, 54);
             this.textBox01.TabIndex = 0;
             this.textBox01.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnUp
+            // label15
             // 
-            this.btnUp.Location = new System.Drawing.Point(515, 24);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(24, 24);
-            this.btnUp.TabIndex = 119;
-            this.btnUp.Text = "↑";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(548, 5);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(11, 12);
+            this.label15.TabIndex = 132;
+            this.label15.Text = "9";
             // 
-            // btnRight
+            // label16
             // 
-            this.btnRight.Location = new System.Drawing.Point(552, 60);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(24, 24);
-            this.btnRight.TabIndex = 120;
-            this.btnRight.Text = "→";
-            this.btnRight.UseVisualStyleBackColor = true;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(492, 5);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(11, 12);
+            this.label16.TabIndex = 131;
+            this.label16.Text = "8";
             // 
-            // btnLeft
+            // label17
             // 
-            this.btnLeft.Location = new System.Drawing.Point(478, 60);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(24, 24);
-            this.btnLeft.TabIndex = 121;
-            this.btnLeft.Text = "←";
-            this.btnLeft.UseVisualStyleBackColor = true;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(436, 5);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(11, 12);
+            this.label17.TabIndex = 130;
+            this.label17.Text = "7";
             // 
-            // btnDown
+            // label18
             // 
-            this.btnDown.Location = new System.Drawing.Point(515, 98);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(24, 24);
-            this.btnDown.TabIndex = 122;
-            this.btnDown.Text = "↓";
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(380, 5);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(11, 12);
+            this.label18.TabIndex = 129;
+            this.label18.Text = "6";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(324, 5);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(11, 12);
+            this.label19.TabIndex = 128;
+            this.label19.Text = "5";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(268, 5);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(11, 12);
+            this.label20.TabIndex = 127;
+            this.label20.Text = "4";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(212, 5);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(11, 12);
+            this.label21.TabIndex = 126;
+            this.label21.Text = "3";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(156, 5);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(11, 12);
+            this.label22.TabIndex = 125;
+            this.label22.Text = "2";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(100, 5);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(11, 12);
+            this.label23.TabIndex = 124;
+            this.label23.Text = "1";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(44, 5);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(11, 12);
+            this.label24.TabIndex = 123;
+            this.label24.Text = "0";
+            // 
+            // BtnLeftRight
+            // 
+            this.BtnLeftRight.Location = new System.Drawing.Point(538, 87);
+            this.BtnLeftRight.Name = "BtnLeftRight";
+            this.BtnLeftRight.Size = new System.Drawing.Size(24, 24);
+            this.BtnLeftRight.TabIndex = 127;
+            this.BtnLeftRight.Text = "⇆";
+            this.BtnLeftRight.UseVisualStyleBackColor = true;
+            this.BtnLeftRight.Click += new System.EventHandler(this.BtnLeftRight_Click);
+            // 
+            // BtnUpDown
+            // 
+            this.BtnUpDown.Location = new System.Drawing.Point(488, 87);
+            this.BtnUpDown.Name = "BtnUpDown";
+            this.BtnUpDown.Size = new System.Drawing.Size(24, 24);
+            this.BtnUpDown.TabIndex = 128;
+            this.BtnUpDown.Text = "⇅";
+            this.BtnUpDown.UseVisualStyleBackColor = true;
+            this.BtnUpDown.Click += new System.EventHandler(this.BtnUpDown_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 5);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(23, 12);
+            this.label25.TabIndex = 133;
+            this.label25.Text = "y\\x";
             // 
             // Form1
             // 
@@ -1499,7 +1802,7 @@
             this.ClientSize = new System.Drawing.Size(1315, 724);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
-            this.Text = "PuzzleWolrd V0.2";
+            this.Text = "PuzzleWolrd V0.21";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
@@ -1637,6 +1940,33 @@
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.TextBox tbYCor;
+        private System.Windows.Forms.TextBox tbXCor;
+        private System.Windows.Forms.Button btnClockwise;
+        private System.Windows.Forms.Button btnAntiClockwise;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button BtnUpDown;
+        private System.Windows.Forms.Button BtnLeftRight;
+        private System.Windows.Forms.Label label25;
     }
 }
 
