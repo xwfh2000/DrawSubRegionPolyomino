@@ -19,7 +19,7 @@ namespace DrawSubRegionPolyomino
         public Form1()
         {
             InitializeComponent();
-            //KeyPreview = true;
+            KeyPreview = true;
             TBGridSize.Text = ConfigurationManager.AppSettings.Get("GridSize");
             TBRoundRatio.Text = ConfigurationManager.AppSettings.Get("RoundRatio");
             TBPenwidth.Text = ConfigurationManager.AppSettings.Get("PenWidth");
@@ -98,35 +98,35 @@ namespace DrawSubRegionPolyomino
         #region 
         private string GetLeftGorup(int x, int y, Piece[,] Pieces)
         {
-            return x - 1 < 0 ? "0,0,0" : Pieces[x - 1, y].contents;
+            return x - 1 < 0 ? ",," : Pieces[x - 1, y].contents;
         }
         private string GetRightGorup(int x, int y, Piece[,] Pieces)
         {
-            return x + 1 > Pieces.GetLength(0) - 1 ? "0,0,0" : Pieces[x + 1, y].contents;
+            return x + 1 > Pieces.GetLength(0) - 1 ? ",," : Pieces[x + 1, y].contents;
         }
         private string GetUpGorup(int x, int y, Piece[,] Pieces)
         {
-            return y - 1 < 0 ? "0,0,0" : Pieces[x, y - 1].contents;
+            return y - 1 < 0 ? ",," : Pieces[x, y - 1].contents;
         }
         private string GetDownGorup(int x, int y, Piece[,] Pieces)
         {
-            return y + 1 > Pieces.GetLength(1) - 1 ? "0,0,0" : Pieces[x, y + 1].contents;
+            return y + 1 > Pieces.GetLength(1) - 1 ? ",," : Pieces[x, y + 1].contents;
         }
         private string GetULGroup(int x, int y, Piece[,] Pieces)
         {
-            return (x - 1 < 0 || y - 1 < 0) ? "0,0,0" : Pieces[x - 1, y - 1].contents;
+            return (x - 1 < 0 || y - 1 < 0) ? ",," : Pieces[x - 1, y - 1].contents;
         }
         private string GetURGroup(int x, int y, Piece[,] Pieces)
         {
-            return (x + 1 > Pieces.GetLength(0) - 1 || y - 1 < 0) ? "0,0,0" : Pieces[x + 1, y - 1].contents;
+            return (x + 1 > Pieces.GetLength(0) - 1 || y - 1 < 0) ? ",," : Pieces[x + 1, y - 1].contents;
         }
         private string GetDLroup(int x, int y, Piece[,] Pieces)
         {
-            return (x - 1 < 0 || y + 1 > Pieces.GetLength(1) - 1) ? "0,0,0" : Pieces[x - 1, y + 1].contents;
+            return (x - 1 < 0 || y + 1 > Pieces.GetLength(1) - 1) ? ",," : Pieces[x - 1, y + 1].contents;
         }
         private string GetDRGroup(int x, int y, Piece[,] Pieces)
         {
-            return (x + 1 > Pieces.GetLength(0) - 1 || y + 1 > Pieces.GetLength(1) - 1) ? "0,0,0" : Pieces[x + 1, y + 1].contents;
+            return (x + 1 > Pieces.GetLength(0) - 1 || y + 1 > Pieces.GetLength(1) - 1) ? ",," : Pieces[x + 1, y + 1].contents;
         }
         #endregion
 
@@ -141,35 +141,35 @@ namespace DrawSubRegionPolyomino
         private bool JudgeULCorner(int x, int y, Piece[,] Pieces)
         {
             string[] M = Pieces[x, y].contents.Split(',');
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return !JudgeULCircle(x, y, pieces);
         }
         private bool JudgeURCorner(int x, int y, Piece[,] Pieces)
         {
             string[] M = Pieces[x, y].contents.Split(',');
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return !JudgeURCircle(x, y, pieces);
         }
         private bool JudgeDLCorner(int x, int y, Piece[,] Pieces)
         {
             string[] M = Pieces[x, y].contents.Split(',');
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return !JudgeDLCircle(x, y, pieces);
         }
         private bool JudgeDRCorner(int x, int y, Piece[,] Pieces)
         {
             string[] M = Pieces[x, y].contents.Split(',');
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return !JudgeDRCircle(x, y, pieces);
         }
         private bool JudgeCenter(int x, int y, Piece[,] Pieces)
         {
             string[] me = Pieces[x, y].contents.Split(',');
-            return me[0] != "0";
+            return me[0] != "";
         }
         #endregion
 
@@ -264,7 +264,7 @@ namespace DrawSubRegionPolyomino
                 return false;
             if (U[0] == M[0] && U[1] == M[1])
                 return false;
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return true;
         }
@@ -278,7 +278,7 @@ namespace DrawSubRegionPolyomino
                 return false;
             if (U[0] == M[0] && U[1] == M[1])
                 return false;
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return true;
         }
@@ -292,7 +292,7 @@ namespace DrawSubRegionPolyomino
                 return false;
             if (D[0] == M[0] && D[1] == M[1])
                 return false;
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return true;
         }
@@ -306,7 +306,7 @@ namespace DrawSubRegionPolyomino
                 return false;
             if (D[0] == M[0] && D[1] == M[1])
                 return false;
-            if (M[0] == "0")
+            if (M[0] == "")
                 return false;
             return true;
         }
@@ -320,8 +320,8 @@ namespace DrawSubRegionPolyomino
             //对称情况：M不为空，且M与L大小组相等，且U与M ！(大小组相等)
             //总结： U与M ！(大小组相等) 且 （U不为空且UL与U大小组相等||M不为空且M与L大小组相等）
             return !(U[0] == M[0] && U[1] == M[1]) &&
-            ((U[0] != "0" && UL[0] == U[0] && UL[1] == U[1]) ||
-             (M[0] != "0" && M[0] == L[0] && M[1] == L[1]));
+            ((U[0] != "" && UL[0] == U[0] && UL[1] == U[1]) ||
+             (M[0] != "" && M[0] == L[0] && M[1] == L[1]));
         }
         private bool JudgeMidLine(int x, int y, Piece[,] Pieces)
         {
@@ -340,8 +340,8 @@ namespace DrawSubRegionPolyomino
             //对称情况：M不为空，且M与R大小组相等，且U与M ！(大小组相等)
             //总结： U与M ！(大小组相等) 且 （U不为空且UR与U大小组相等||M不为空且M与R大小组相等）
             return !(U[0] == M[0] && U[1] == M[1]) &&
-            ((U[0] != "0" && UR[0] == U[0] && UR[1] == U[1]) ||
-             (M[0] != "0" && M[0] == R[0] && M[1] == R[1]));
+            ((U[0] != "" && UR[0] == U[0] && UR[1] == U[1]) ||
+             (M[0] != "" && M[0] == R[0] && M[1] == R[1]));
         }
         private bool JudgeUpLine(int x, int y, Piece[,] Pieces)
         {
@@ -353,8 +353,8 @@ namespace DrawSubRegionPolyomino
             //对称情况：M不为空，且M与U大小组相等，且L与M ！(大小组相等)
             //总结： L与M ！(大小组相等) 且 （UL不为空且UL与L大小组相等||M不为空且M与U大小组相等）
             return !(L[0] == M[0] && L[1] == M[1]) &&
-            ((UL[0] != "0" && UL[0] == L[0] && UL[1] == L[1]) ||
-             (M[0] != "0" && M[0] == U[0] && M[1] == U[1]));
+            ((UL[0] != "" && UL[0] == L[0] && UL[1] == L[1]) ||
+             (M[0] != "" && M[0] == U[0] && M[1] == U[1]));
         }
         private bool JudgeLmidLine(int x, int y, Piece[,] Pieces)
         {
@@ -373,8 +373,8 @@ namespace DrawSubRegionPolyomino
             //对称情况：M不为空，且M与D大小组相等，且L与M ！(大小组相等)
             //总结： L与M ！(大小组相等) 且 （DL不为空且DL与L大小组相等||M不为空且M与D大小组相等）
             return !(L[0] == M[0] && L[1] == M[1]) &&
-            ((DL[0] != "0" && DL[0] == L[0] && DL[1] == L[1]) ||
-             (M[0] != "0" && M[0] == D[0] && M[1] == D[1]));
+            ((DL[0] != "" && DL[0] == L[0] && DL[1] == L[1]) ||
+             (M[0] != "" && M[0] == D[0] && M[1] == D[1]));
         }
         #endregion
 
@@ -437,9 +437,26 @@ namespace DrawSubRegionPolyomino
             TextRenderer.DrawText(gp, s, new Font("宋体", Convert.ToInt32(TBFontSize.Text)),
                 new Rectangle(X, Y, g, g), fontColor, flags);
         }
-
+        private string ValidContent(string content)
+        {
+            int commacount = 0;
+            foreach (char c in content)
+            {
+                if (c == ',')
+                    commacount++;
+            }
+            if (commacount >= 2)
+                return content;
+            else
+                return ",,";
+        }
         private void DrawPoly(Pen pen, Brush brush, Color fontColor, Graphics gp, double gridsize, Piece[,] Pieces, double roundRatio)
         {
+            for (int x = 0; x < Pieces.GetLength(0); x++)
+                for (int y = 0; y < Pieces.GetLength(1); y++)
+                {
+                    Pieces[x, y].contents = ValidContent(Pieces[x, y].contents);
+                }
             for (int x = 0; x < Pieces.GetLength(0); x++)
                 for (int y = 0; y < Pieces.GetLength(1); y++)
                 {
@@ -480,7 +497,7 @@ namespace DrawSubRegionPolyomino
                     if (JudgeDownLine(x, y, Pieces))
                         DrawDownLine(pen, gp, gridsize, X, Y, radius);
                     //画字体
-                    if (RBTNDraw.Checked == true && "0,0,0" != Pieces[x, y].contents)
+                    if (RBTNDraw.Checked == true && ",," != Pieces[x, y].contents)
                     {
                         string[] groupNUm = Pieces[x, y].contents.Split(',');
                         DrawStr(gp, fontColor, gridsize, X, Y, groupNUm[2]);
@@ -500,7 +517,7 @@ namespace DrawSubRegionPolyomino
                 //判断是为TextBox框
                 if (item is TextBox)
                 {
-                    item.Text = "0,,";
+                    item.Text = ",,";
                 }
             }
             Invalidate();
@@ -566,7 +583,7 @@ namespace DrawSubRegionPolyomino
             AddUpdateAppSettings("FontColor", colorDialog3.Color.ToArgb().ToString());
             AddUpdateAppSettings("XCor", tbXCor.Text);
             AddUpdateAppSettings("YCor", tbYCor.Text);
-            string pies = "";
+            string pieces = "";
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -581,18 +598,24 @@ namespace DrawSubRegionPolyomino
                         {
                             if (item.Name == "textBox" + n)
                             {
-                                pies += item.Text != "" ? item.Text : "0，0，0";//0组表示为空。,为小分割
+                                string content = item.Text;
+                                int count = 0;
+                                foreach (char c in content)
+                                    if (c == ',')
+                                        count++;
+
+                                pieces += count <= 0 ? ",," : content;//0组表示为空。,为小分割
                                 if (j < 9)
-                                    pies += "|";//|为中分割
+                                    pieces += "|";//|为中分割
                             }
 
                         }
                     }
                 }
                 if (i < 9)
-                    pies += ".";// .为大分割
+                    pieces += ".";// .为大分割
             }
-            AddUpdateAppSettings("Pieces", pies);
+            AddUpdateAppSettings("Pieces", pieces);
         }
 
         private void BTNFontColor_Click(object sender, EventArgs e)
@@ -688,12 +711,12 @@ namespace DrawSubRegionPolyomino
                 int b = (A - x + y) % 10;
                 return new int[] { a >= 0 ? a : a + 10, b >= 0 ? b : b + 10 };
             }
-            if(wise==3)
+            if (wise == 3)
             {
-                int b = (2 * y - B)%10;
-                return new int[] { A, b >= 0?b:b + 10 };
+                int b = (2 * y - B) % 10;
+                return new int[] { A, b >= 0 ? b : b + 10 };
             }
-            if(wise==2)
+            if (wise == 2)
             {
                 int a = (2 * x - A) % 10;
                 return new int[] { a >= 0 ? a : a + 10, B };
@@ -764,17 +787,7 @@ namespace DrawSubRegionPolyomino
             Invalidate();
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Home)
-                btnUp.PerformClick();
-            if (e.KeyCode == Keys.End)
-                btnDown.PerformClick();
-            if (e.KeyCode == Keys.Delete)
-                btnLeft.PerformClick();
-            if (e.KeyCode == Keys.PageDown)
-                btnRight.PerformClick();
-        }
+
 
         private void BtnClockwise_Click(object sender, EventArgs e)
         {
@@ -806,6 +819,14 @@ namespace DrawSubRegionPolyomino
             map = RotateMap(map, 3, Convert.ToInt32(tbYCor.Text), Convert.ToInt32(tbXCor.Text));
             RestoreMap(map);
             Invalidate();
+        }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                MessageBox.Show("v0.22:\r\n" +
+                    "将默认空组从\"0\"改为\"\";");
+            }
         }
     }
 }
